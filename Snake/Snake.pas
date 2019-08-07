@@ -2,9 +2,9 @@ program mozgkigyo;
 
 uses crt;
 
-const max=100;
+const max=10000;
 
-var c, p: char;
+var c, p, v, b, b2: char;
 var x, y:integer;
 var i, h:integer;
 var memx: array[1..max] of integer;
@@ -14,7 +14,7 @@ var xcsill, ycsill:integer;
 
 procedure over;
 var i:integer;
-begin
+begin		//GAME OVER-------------------------------------------------
 //1. sor
 delay(100);
 for i:=17 to 26 do
@@ -684,12 +684,12 @@ for i:=62 to 64 do
 	end;
 //vége
 writeln;
-end;
+end;		//GAME OVER-------------------------------------------------
 
 
 procedure palya;
 var i:integer;
-begin
+begin		//Palya-----------------------------------------------------
 for i:=1 to 38 do
 	begin
 	write('%');
@@ -714,10 +714,14 @@ for i:=1 to 24 do
 	writeln('%');
 	end;
 
-end;
+end;		//Palya-----------------------------------------------------
 
 
 BEGIN
+repeat
+begin		//alap beállítások------------------------------------------
+clrscr;
+
 palya;
 x:=10;
 y:=10;
@@ -739,7 +743,17 @@ gotoxy(xcsill, ycsill);
 write('@');
 
 gotoxy(x, y);
+end;		//alap beállítások------------------------------------------
 
+
+
+
+
+
+
+
+
+begin		//mozgás----------------------------------------------------
 REPEAT
 if keypressed 
 	then begin
@@ -747,20 +761,21 @@ if keypressed
 		 if (c<>'p') then p:=c;
 		 end;
 
+
 if c='p' 
 	then begin
 		 readkey;
 		 c:=p
 		 end;
 
+
 case ord(c) of
-72: y:=y-1;	//fel
-80: y:=y+1;	//le
-77: x:=x+1;	//jobb
-75: x:=x-1;	//bal
+72: y:=y-1;	(*fel*)
+80: y:=y+1;	(*le*)
+77: x:=x+1;	(*jobb*)
+75: x:=x-1;	(*bal*)
 end;
 
-	
 
 for i:=max downto 2 do
 begin
@@ -788,7 +803,6 @@ if (x<2) or (x>38) or (y<2) or(y>24)
 		 c:='v';
 		 end
 	else begin;
-		 
 		 if (x=xcsill) and (y=ycsill)
 			then begin
 				 maxx:=maxx+1;
@@ -807,7 +821,6 @@ if (x<2) or (x>38) or (y<2) or(y>24)
 				 until h=1;
 				 gotoxy(xcsill, ycsill);
 				 write('@');
-				 
 				 gotoxy(x, y);
 				 end
 			else begin 
@@ -816,13 +829,11 @@ if (x<2) or (x>38) or (y<2) or(y>24)
 				 end;
 		 end;
 
+
 gotoxy(x, y);
 write('*');
+delay(100);
 
-if (ord(c)=72) or (ord(c)=80)
-then delay(110);
-if (ord(c)=77) or (ord(c)=75)
-then delay(85);
 
 if not (c in ['v', 'V'])
 then begin
@@ -832,6 +843,39 @@ then begin
 			 end;
 	 end;
 UNTIL (c in['v', 'V']); 
+end;		//mozgás----------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+begin		//újra kezdés-----------------------------------------------
+gotoxy(1, 25);
+write('Try again? yes(y) or no(n): ');
+repeat
+if keypressed 
+	then begin
+		 repeat
+		 b2:=readkey;
+		 until (not keypressed);
+		 end;
+b:=readkey;
+
+if (ord(b)<>0) 
+	then begin
+		 if (b in ['y', 'n'])
+			then v:=b;
+		 end;
+until (b in ['y', 'n']);
+end;		//újra kezdés-----------------------------------------------
+
+until v<>'y';
+
 
 gotoxy(1, 25);
 END.
