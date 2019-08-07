@@ -2,14 +2,17 @@ program mozgkigyo;
 
 uses crt;
 
-const max=20;
+const max=100;
 
 var c: char;
 var x, y:integer;
 var i, j, k:integer;
 var xt: array[2..max] of integer;
 var yt: array[2..max] of integer;
-
+var memx: array[1..max] of integer;
+var memy: array[1..max] of integer;
+var maxx, maxy:integer;
+var xcsill, ycsill:integer;
 
 procedure over;
 var i:integer;
@@ -690,9 +693,11 @@ end;
 BEGIN	
 x:=10;
 y:=10;
+memx[1]:=x;
+memy[1]:=y;
 gotoxy(x, y);
 write('*');
-j:=max+1;
+j:=1;
 for i:=2 to max do
 	begin
 	xt[i]:=10;
@@ -700,17 +705,25 @@ for i:=2 to max do
 	end;
 c:=readkey;
 
+maxx:=2;
+maxy:=2;
+randomize;
+xcsill:=random(79)+1;
+ycsill:=random(24)+1;
+gotoxy(xcsill, ycsill);
+write('*');
+
+gotoxy(x, y);
 
 repeat
-	
-	
-	
+
+//xxxxxxxxx
 	
 	if keypressed 
 		then begin
 			 c:=readkey 
 			 end;
-	
+
 			 case ord(c) of
 			 72: y:=y-1;	//fel
 			 80: y:=y+1;	//le
@@ -718,22 +731,53 @@ repeat
 			 75: x:=x-1;	//bal
 			 end;
 	
-	
+for j:=max downto 2 do
+begin
+memx[j]:=memx[j-1];
+memy[j]:=memy[j-1];
+end;
+memx[1]:=x;
+memy[1]:=y;
+
+
 	
 	if (x<1) or (x>80) or (y<1) or(y>25)
 	then begin
-		 
+		 clrscr;
+		 over;
+		 c:='v';
 		 end
 	else begin;
 		 
-		 j:=j-1;
-		 if j=1 then j:=max;
+		 if (x=xcsill) and (y=ycsill)
+	then begin
+		maxx:=maxx+1;
+		maxy:=maxy+1;
+		
+		xcsill:=random(79)+1;
+		ycsill:=random(24)+1;
+		gotoxy(xcsill, ycsill);
+		write('*');
+		
+		gotoxy(x, y);
+		xt[maxx]:=x;
+		yt[maxy]:=y;
+		 end
+	else begin 
+		 for k:=2 to max do
+			begin
+			if (xt[k]=memx[maxx]) and (yt[k]=memy[maxy])
+				then begin
+					 gotoxy(xt[k], yt[k]);
+					 write(' ');
+					 xt[k]:=x;
+					 yt[k]:=y;
+					 
+					 end;
+		 end;
+			end;
 		 
-		 gotoxy(xt[j], yt[j]);
-		 write(' ');
-		 
-		 xt[j]:=x;
-		 yt[j]:=y;
+
 		 
 		 end;
 	
