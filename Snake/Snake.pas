@@ -22,6 +22,42 @@ var memy: array[1..max] of integer;
 var maxx, maxy:integer;
 var xcsill, ycsill:integer;
 
+
+procedure won;
+begin       //WON-------------------------------------------------------
+delay(300);
+gotoxy(3, 13);
+write('****  ****  ******   **      **    ****  ****  ****  ******   ***    **  **');
+delay(100);
+gotoxy(3, 14);
+write(' **    **  ********  **      **     **    **    **  ********  ****   **  **');
+delay(100);
+gotoxy(3, 15);
+write('  **  **  ***    *** **      **     **    **    ** ***    *** ****   **  **');
+delay(100);
+gotoxy(3, 16);
+write('   ****   **      ** **      **      **  ****  **  **      ** ** **  **  **');
+delay(100);
+gotoxy(3, 17);
+write('    **    **      ** **      **      **  ****  **  **      ** ** **  **  **');
+delay(100);
+gotoxy(3, 18);
+write('    **    **      ** **      **      **  ****  **  **      ** **  ** **  **');
+delay(100);
+gotoxy(3, 19);
+write('    **    **      ** ***    ***       ****  ****   **      ** **  ** **  **');
+delay(100);
+gotoxy(3, 20);
+write('    **    ***    ***  ***  ***        ****  ****   ***    **  **   ****    ');
+delay(100);
+gotoxy(3, 21);
+write('    **     ********   ********         **    **     ********  **   ****  **');
+delay(100);
+gotoxy(3, 22);
+write('   ****     ******      ****           **    **      ******   **    ***  **');
+end;        //WON-------------------------------------------------------
+
+
 procedure over;
 begin		//GAME OVER-------------------------------------------------
 //1. szó
@@ -324,21 +360,17 @@ write('--------');
 
 gotoxy(1, 5);
 write('> Field size:  25x38     ');
-begin
 gotoxy(16, 5);
 write(mag, 'x', szel, '     ');
-end;
+
 gotoxy(3, 7);
 write('Start poz');
-begin
 
-end;
 gotoxy(3, 9);
 write('Snake length   < 5 >');
-begin
 gotoxy(20, 9);
 write(ohosz-1, ' >');
-end;
+
 gotoxy(3, 11);
 write('Speed   < normal >');
 begin
@@ -372,8 +404,10 @@ if gyor=5
 		 write('very fast >');
 		 end;
 end;
+
 gotoxy(3, 21);
 write('reset');
+
 gotoxy(3, 23);
 write('MAIN MENU');
 
@@ -466,6 +500,7 @@ if (ord(omozg)=13) and (otart=1) (*field size*)
 		 
 		 until (ord(pmozg)=13);
 		 
+		 if ohosz>(((szel-1)*(mag-1))-2) then ohosz:=(((szel-1)*(mag-1))-2);
 		 
 		 begin
 		 clrscr;
@@ -665,8 +700,8 @@ if ((ord(omozg)=77) or (ord(omozg)=75)) and (otart=3) (*length*)
 		 77: ohosz:=ohosz+1;	(*jobb*)
 		 75: ohosz:=ohosz-1;	(*bal*)
 		 end;
-		 if ohosz<2 then ohosz:=(((szel-2)*(mag-2)));
-		 if ohosz>((szel-2)*(mag-2)) then ohosz:=2;
+		 if ohosz<2 then ohosz:=(((szel-1)*(mag-1))-2);
+		 if ohosz>(((szel-1)*(mag-1))-2) then ohosz:=2;
 		 
 				 begin
 				 gotoxy(20, 9);
@@ -765,6 +800,8 @@ end;		//beállítások-----------------------------------------------
 
 if (fo=1) then
 begin		//alap------------------------------------------------------
+(*start*)
+begin
 for i:=2 to szel-1 do
 	begin
 	if (abs((szel/i)-xarany))<(abs((szel/x)-xarany))
@@ -779,6 +816,8 @@ for i:=2 to mag-1 do
 			 y:=i;
 			 end;
 	end;
+end;
+(*start*)
 
 (*side bar*)
 begin
@@ -943,6 +982,7 @@ if (x<2) or (x>szel-1) or (y<2) or(y>mag-1)
 				 gotoxy(74, 14);
 				 write(coll);
 				 
+				 
 				 repeat
 				 h:=1;
 				 for i:=1 to maxx do
@@ -958,6 +998,19 @@ if (x<2) or (x>szel-1) or (y<2) or(y>mag-1)
 				 gotoxy(xcsill, ycsill);
 				 write('@');
 				 gotoxy(x, y);
+				 
+				 if maxx=(((szel-1)*(mag-1))-1)
+					then begin
+						 clrscr;
+						 won;//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!You won
+						 c:='v';
+						 for i:=1 to max do
+						 begin
+						 memx[i]:=szel+1;
+						 memy[i]:=mag+1;
+						 end;
+						 x:=1;
+						 end;
 				 end
 			else begin 
 				 if (lepes+1>=maxx)
