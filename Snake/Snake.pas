@@ -873,6 +873,7 @@ gotoxy(x, y);
 write('*');
 maxx:=ohosz;
 maxy:=ohosz;
+nul:='a';
 
 for i:=2 to ohosz do
 	begin
@@ -911,9 +912,13 @@ if keypressed
 	then begin
 		 nul:=readkey;
 		 
-		 if (ord(nul)=0) 
+		 if (ord(nul)=0)
 			then begin
 				 c:=readkey;
+				 end;
+		 if (nul='e')
+			then begin
+				 c:='v';
 				 end;
 		 if (nul='p')
 			then begin
