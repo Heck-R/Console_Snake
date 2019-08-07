@@ -1551,22 +1551,6 @@ if not (x<2) and not (y<2) and not (x>szel-1) and not (y>mag-1)
 		 if (gyor=5) then delay(25);
 		 end;
 
-
-if not (c in ['v', 'V'])
-then begin
-	 if keypressed 
-		then begin
-			 nul:=readkey;
-			 if (ord(nul)=0)
-				then begin
-					 c:=readkey; 
-					 end;
-			 if (nul='p')
-				then begin
-					 readkey;
-					 end;
-			 end;
-	 end;
 UNTIL (c in['v', 'V']); 
 end;		//mozgás----------------------------------------------------
 
