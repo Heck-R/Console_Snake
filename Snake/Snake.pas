@@ -4,8 +4,9 @@ uses crt;
 
 const max=10000;
 
-var harveg:boolean;
-var c, p, b: char;
+var harveg, opt:boolean;
+var c, p, b, omozg: char;
+var otart, oel:integer;
 var x, y:integer;
 var m, m2:integer;
 var mozg:char;
@@ -989,6 +990,7 @@ end;		//EXIT------------------------------------------------------
 
 BEGIN
 randomize;
+cursoroff;
 repeat
 begin		//előkészítés-----------------------------------------------
 clrscr;
@@ -1064,7 +1066,111 @@ end;		//MAIN MENU-------------------------------------------------
 
 if (fo=2) then
 begin		//beállítások-----------------------------------------------
+clrscr;
+omozg:='a';
+otart:=1;
+oel:=otart;
 
+gotoxy(1, 1);
+write('Options|');
+gotoxy(1, 2);
+write('--------');
+
+gotoxy(1, 5);
+write('> Field size');
+gotoxy(3, 7);
+write('Snake length   < 5 >');
+gotoxy(3, 9);
+write('Speed   < normal >');
+
+gotoxy(3, 23);
+write('MAIN MENU');
+
+
+repeat
+
+if keypressed 
+	then begin
+		 omozg:=readkey;
+		 end;
+
+case ord(omozg) of
+72: otart:=otart-1;	(*fel*)
+80: otart:=otart+1;	(*le*)
+end;
+
+if (otart>4) then otart:=4;
+if (otart<1) then otart:=1;
+
+
+if otart<>oel
+	then begin
+		 if oel=1 	//töröl
+			then begin
+				 gotoxy(1, 5);
+				 write(' ');
+				 end;
+		 if oel=2
+			then begin
+				 gotoxy(1, 7);
+				 write(' ');
+				 end;
+		 if oel=3 
+			then begin
+				 gotoxy(1, 9);
+				 write(' ');
+				 end;
+		 if oel=4 
+			then begin
+				 gotoxy(1, 23);
+				 write(' ');
+				 end;	//töröl
+		 
+		 
+		 if otart=1 	//ír
+			then begin
+				 gotoxy(1, 5);
+				 write('>');
+				 end;
+		 if otart=2
+			then begin
+				 gotoxy(1, 7);
+				 write('>');
+				 end;
+		 if otart=3 
+			then begin
+				 gotoxy(1, 9);
+				 write('>');
+				 end;
+		 if otart=4 
+			then begin
+				 gotoxy(1, 23);
+				 write('>');
+				 end;	//ír
+		 		 
+		 end;
+
+if (ord(omozg)=13) and (otart=4)
+	then begin
+		 opt:=true;
+		 fo:=3;
+		 end;
+
+
+oel:=otart;
+omozg:='a';
+
+
+
+
+
+if keypressed 
+	then begin
+		 omozg:=readkey;
+		 end;
+
+until opt;
+opt:=false
 end;		//beállítások-----------------------------------------------
 
 
@@ -1099,6 +1205,7 @@ end;		//alap------------------------------------------------------
 
 if (fo=1) then
 begin		//mozgás----------------------------------------------------
+
 REPEAT
 if keypressed 
 	then begin
