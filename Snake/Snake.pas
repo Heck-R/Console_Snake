@@ -5,7 +5,7 @@ uses crt;
 const max=10000;
 
 var harveg, opt:boolean;
-var c, b, omozg, nul, pmozg, pel:char;
+var c, cel, b, omozg, nul, pmozg, pel:char;
 var otart, oel, gyor:integer;
 var ohosz, lepes:integer;
 var mag, szel:integer;
@@ -1431,6 +1431,7 @@ for i:=2 to ohosz do
 repeat
 c:=readkey;
 until(ord(c)=80) or (ord(c)=77) or (ord(c)=75) or (ord(c)=72);
+cel:=c;
 
 repeat
 xcsill:=random(szel-2)+2;
@@ -1461,13 +1462,18 @@ if keypressed
 		 if (ord(nul)=0) 
 			then begin
 				 c:=readkey;
+				 
+				 if ((ord(c)=72) and (ord(cel)=80)) or ((ord(cel)=72) and (ord(c)=80)) or
+					((ord(c)=77) and (ord(cel)=75)) or ((ord(c)=75) and (ord(cel)=77))
+					then c:=cel;
+				 
 				 end;
 		 if (nul='p')
 			then begin
 				 readkey;
 				 end;
 		 end;
-
+cel:=c;
 
 case ord(c) of
 72: y:=y-1;	(*fel*)
