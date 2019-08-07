@@ -20,4 +20,4 @@ Suggestion: For the best experience it's advised to:
 ## Control
 The arrow keys and the Enter
 ## PS
-This is the first really useable program/game I ever made (also that was a long time ago) so treat this stumbling code of a child with respect ;)
+This is the first really useable program/game I ever made (and that was a long time ago) so treat this stumbling (and hungarian) code of a child with care ;)
