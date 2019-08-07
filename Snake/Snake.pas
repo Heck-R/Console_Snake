@@ -541,6 +541,9 @@ exit(57, 22);
 nyil(3, 10);
 harveg:=false;
 
+gotoxy(70, 34);
+write('by Heck-R');
+
 repeat
 mozg:=readkey;
 
