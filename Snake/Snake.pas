@@ -3,9 +3,17 @@ program mozgkigyo;
 uses crt;
 
 const max=10000;
+const szemely=10;
 
+type lead = record
+			nev:string;
+			pont:integer;
+			end;
+
+
+var tart:file of lead;
 var harveg, opt:boolean;
-var omozg, pmozg, spmozg:char;
+var omozg, pmozg, spmozg, sckey:char;
 var cel, pel:char;
 var c, b, nul:char;
 var score, coll:integer;
@@ -17,10 +25,13 @@ var xarany, yarany:real;
 var m, m2, sz, sz2:integer;
 var mozg:char;
 var i, h, fo:integer;
-var memx: array[1..max] of integer;
-var memy: array[1..max] of integer;
 var maxx, maxy:integer;
 var xcsill, ycsill:integer;
+var memx: array[1..max] of integer;
+var memy: array[1..max] of integer;
+var leader: array[1..szemely] of lead;
+
+
 
 
 procedure won;
@@ -265,6 +276,74 @@ write('***** *   * *   * ****');
 end;        //MINIGAME--------------------------------------------------
 
 
+procedure miniscores(startx:integer; starty:integer);
+begin		//MINISCORES------------------------------------------------
+gotoxy(startx, starty);
+write('*** *** *** **  *** ***');
+gotoxy(startx, starty+1);
+write('*   *   * * * * *   *  ');
+gotoxy(startx, starty+2);
+write('*** *   * * **  *** ***');
+gotoxy(startx, starty+3);
+write('  * *   * * * * *     *');
+gotoxy(startx, starty+4);
+write('*** *** *** * * *** ***');
+
+gotoxy(startx, starty+10);
+write('*** *** *** **  *** ***');
+gotoxy(startx, starty+11);
+write('*   *   * * * * *   *  ');
+gotoxy(startx, starty+12);
+write('*** *   * * **  *** ***');
+gotoxy(startx, starty+13);
+write('  * *   * * * * *     *');
+gotoxy(startx, starty+14);
+write('*** *** *** * * *** ***');
+
+gotoxy(startx, starty+20);
+write('*** *** *** **  *** ***');
+gotoxy(startx, starty+21);
+write('*   *   * * * * *   *  ');
+gotoxy(startx, starty+22);
+write('*** *   * * **  *** ***');
+gotoxy(startx, starty+23);
+write('  * *   * * * * *     *');
+gotoxy(startx, starty+24);
+write('*** *** *** * * *** ***');
+
+for i:=1 to 35 do
+	begin
+	gotoxy(32, i);
+	write('#');
+	end;
+end;        //MINISCORES------------------------------------------------
+
+
+procedure keret(startx:integer; starty:integer);
+begin       //KERET-----------------------------------------------------
+gotoxy(startx, starty);
+write('* * *   * ** *   * * *');
+gotoxy(startx, starty+1);
+write('*****   ******   *****');
+gotoxy(startx, starty+2);
+write('*****   ******   *****');
+
+gotoxy(startx, starty+4);
+write('* * *            * * *');
+gotoxy(startx, starty+5);
+write('*****            *****');
+gotoxy(startx, starty+6);
+write('*****            *****');
+
+gotoxy(startx, starty+8);
+write('* * *   * ** *   * * *');
+gotoxy(startx, starty+9);
+write('*****   ******   *****');
+gotoxy(startx, starty+10);
+write('*****   ******   *****');
+end;        //KERET-----------------------------------------------------
+
+
 procedure pause(x:integer; y:integer);
 begin       //PAUSE-----------------------------------------------------
 gotoxy(x, y);
@@ -299,6 +378,20 @@ write('*************');
 end;        //CROWN-----------------------------------------------------
 
 
+procedure nevjegy(startx:integer; starty:integer; neve:string; pontja:integer; hely:integer);
+begin       //NEVJEGY---------------------------------------------------
+gotoxy(startx, starty);
+write('    ', neve);
+gotoxy(startx, starty+1);
+write(hely, '.:');
+gotoxy(startx, starty+2);
+write('    ', pontja)
+end;       
+
+
+
+
+
 
 
 
@@ -319,6 +412,33 @@ xel:=x;
 yel:=y;
 xarany:=2;
 yarany:=2;
+
+begin   (*pontozas*)
+assign(tart, 'scores.dat');
+{$I-}
+reset(tart);
+{$I+}
+if ioresult<>0 then begin
+					rewrite(tart);
+					for i:=1 to szemely do
+						begin
+						leader[i].nev:='-----';
+						leader[i].pont:=00000;
+						end;
+					for i:=1 to szemely do
+						begin
+						write(tart, leader[i]);
+						end;
+					end
+			   else begin
+					for i:=1 to szemely do
+						begin
+						read(tart, leader[i]);
+						end;
+					end;
+close(tart);
+end     (*pontozas*)
+
 end;		//rögzítés--------------------------------------------------
 
 
@@ -387,7 +507,7 @@ if (m<>m2) or (sz<>sz2)
 
 
 if (m=1) and (sz=1) and (ord(mozg)=13) then fo:=1;
-if (m=1) and (sz=2) and (ord(mozg)=13) then fo:=4;
+if (m=1) and (sz=2) and (ord(mozg)=13) then fo:=3;
 if (m=2) and (sz=1) and (ord(mozg)=13) then fo:=2;
 if (m=2) and (sz=2) and (ord(mozg)=13) then fo:=10;
 
@@ -408,7 +528,31 @@ end;		//MAIN MENU-------------------------------------------------
 
 if (fo=3) then
 begin       //SCORES----------------------------------------------------
+repeat
+miniscores(5, 6);
 
+keret(46, 3);
+
+
+begin
+nevjegy(52, 7, leader[1].nev, leader[1].pont, 1);
+
+nevjegy(37, 16, leader[2].nev, leader[2].pont, 2);
+nevjegy(37, 23, leader[3].nev, leader[3].pont, 3);
+nevjegy(37, 30, leader[4].nev, leader[4].pont, 4);
+
+nevjegy(52, 16, leader[5].nev, leader[5].pont, 5);
+nevjegy(52, 23, leader[6].nev, leader[6].pont, 6);
+nevjegy(52, 30, leader[7].nev, leader[7].pont, 7);
+
+nevjegy(67, 16, leader[8].nev, leader[8].pont, 8);
+nevjegy(67, 23, leader[9].nev, leader[9].pont, 9);
+nevjegy(67, 30, leader[10].nev, leader[10].pont, 10);
+end;
+
+sckey:=readkey;
+
+until (ord(sckey)=13);
 end;        //SCORES----------------------------------------------------
 
 
@@ -1156,7 +1300,6 @@ if keypressed
 		 until (not keypressed);
 		 end;
 b:=readkey;
-fo:=5;
 end;		//várakozás-------------------------------------------------
 
 until fo=10;
