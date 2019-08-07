@@ -19,675 +19,297 @@ var maxx, maxy:integer;
 var xcsill, ycsill:integer;
 
 procedure over;
-var i:integer;
 begin		//GAME OVER-------------------------------------------------
 //1. sor
 delay(100);
-for i:=17 to 26 do
-	begin
-	gotoxy(i, 7);
-	write('*');
-	end;
-for i:=34 to 34 do
-	begin
-	gotoxy(i, 7);
-	write('*');
-	end;
-for i:=42 to 45 do
-	begin
-	gotoxy(i, 7);
-	write('*');
-	end;
-for i:=49 to 52 do
-	begin
-	gotoxy(i, 7);
-	write('*');
-	end;
-for i:=55 to 64 do
-	begin
-	gotoxy(i, 7);
-	write('*');
-	end;
+gotoxy(17, 7);
+write('**********');
+gotoxy(34, 7);
+write('*');
+gotoxy(42, 7);
+write('****');
+gotoxy(49, 7);
+write('****');
+gotoxy(55, 7);
+write('**********');
 //2. sor
 delay(100);
-for i:=17 to 26 do
-	begin
-	gotoxy(i, 8);
-	write('*');
-	end;
-for i:=33 to 35 do
-	begin
-	gotoxy(i, 8);
-	write('*');
-	end;
-for i:=42 to 46 do
-	begin
-	gotoxy(i, 8);
-	write('*');
-	end;
-for i:=48 to 52 do
-	begin
-	gotoxy(i, 8);
-	write('*');
-	end;
-for i:=55 to 64 do
-	begin
-	gotoxy(i, 8);
-	write('*');
-	end;
+gotoxy(17, 8);
+write('**********');
+gotoxy(33, 8);
+write('***');
+gotoxy(42, 8);
+write('*****');
+gotoxy(48, 8);
+write('*****');
+gotoxy(55, 8);
+write('**********');
 //3. sor
 delay(100);
-for i:=17 to 19 do
-	begin
-	gotoxy(i, 9);
-	write('*');
-	end;
-for i:=26 to 26 do
-	begin
-	gotoxy(i, 9);
-	write('*');
-	end;
-for i:=32 to 36 do
-	begin
-	gotoxy(i, 9);
-	write('*');
-	end;
-for i:=42 to 43 do
-	begin
-	gotoxy(i, 9);
-	write('*');
-	end;
-for i:=45 to 46 do
-	begin
-	gotoxy(i, 9);
-	write('*');
-	end;
-for i:=48 to 49 do
-	begin
-	gotoxy(i, 9);
-	write('*');
-	end;
-for i:=51 to 52 do
-	begin
-	gotoxy(i, 9);
-	write('*');
-	end;
-for i:=55 to 56 do
-	begin
-	gotoxy(i, 9);
-	write('*');
-	end;
+gotoxy(17, 9);
+write('***');
+gotoxy(26, 9);
+write('*');
+gotoxy(32, 9);
+write('*****');
+gotoxy(42, 9);
+write('**');
+gotoxy(45, 9);
+write('**');
+gotoxy(48, 9);
+write('**');
+gotoxy(51, 9);
+write('**');
+gotoxy(55, 9);
+write('**');
 //4. sor
 delay(100);
-for i:=17 to 18 do
-	begin
-	gotoxy(i, 10);
-	write('*');
-	end;
-for i:=32 to 33 do
-	begin
-	gotoxy(i, 10);
-	write('*');
-	end;
-for i:=35 to 36 do
-	begin
-	gotoxy(i, 10);
-	write('*');
-	end;
-for i:=42 to 43 do
-	begin
-	gotoxy(i, 10);
-	write('*');
-	end;
-for i:=46 to 48 do
-	begin
-	gotoxy(i, 10);
-	write('*');
-	end;
-for i:=51 to 52 do
-	begin
-	gotoxy(i, 10);
-	write('*');
-	end;
-for i:=55 to 56 do
-	begin
-	gotoxy(i, 10);
-	write('*');
-	end;
+gotoxy(17, 10);
+write('**');
+gotoxy(32, 10);
+write('**');
+gotoxy(35, 10);
+write('**');
+gotoxy(42, 10);
+write('**');
+gotoxy(46, 10);
+write('***');
+gotoxy(51, 10);
+write('**');
+gotoxy(55, 10);
+write('**');
 //5.sor
 delay(100);
-for i:=17 to 18 do
-	begin
-	gotoxy(i, 11);
-	write('*');
-	end;
-for i:=31 to 32 do
-	begin
-	gotoxy(i, 11);
-	write('*');
-	end;
-for i:=36 to 37 do
-	begin
-	gotoxy(i, 11);
-	write('*');
-	end;
-for i:=42 to 43 do
-	begin
-	gotoxy(i, 11);
-	write('*');
-	end;
-for i:=47 to 47 do
-	begin
-	gotoxy(i, 11);
-	write('*');
-	end;
-for i:=51 to 52 do
-	begin
-	gotoxy(i, 11);
-	write('*');
-	end;
-for i:=55 to 63 do
-	begin
-	gotoxy(i, 11);
-	write('*');
-	end;
+gotoxy(17, 11);
+write('**');
+gotoxy(31, 11);
+write('**');
+gotoxy(36, 11);
+write('**');
+gotoxy(42, 11);
+write('**');
+gotoxy(47, 11);
+write('*');
+gotoxy(51, 11);
+write('**');
+gotoxy(55, 11);
+write('*********');
 //6. sor
 delay(100);
-for i:=17 to 18 do
-	begin
-	gotoxy(i, 12);
-	write('*');
-	end;
-for i:=23 to 26 do
-	begin
-	gotoxy(i, 12);
-	write('*');
-	end;
-for i:=31 to 37 do
-	begin
-	gotoxy(i, 12);
-	write('*');
-	end;
-for i:=42 to 43 do
-	begin
-	gotoxy(i, 12);
-	write('*');
-	end;
-for i:=51 to 52 do
-	begin
-	gotoxy(i, 12);
-	write('*');
-	end;
-for i:=55 to 63 do
-	begin
-	gotoxy(i, 12);
-	write('*');
-	end;
+gotoxy(17, 12);
+write('**');
+gotoxy(23, 12);
+write('****');
+gotoxy(31, 12);
+write('*******');
+gotoxy(42, 12);
+write('**');
+gotoxy(51, 12);
+write('**');
+gotoxy(55, 12);
+write('*********');
 //7. sor
 delay(100);
-for i:=17 to 18 do
-	begin
-	gotoxy(i, 13);
-	write('*');
-	end;
-for i:=24 to 26 do
-	begin
-	gotoxy(i, 13);
-	write('*');
-	end;
-for i:=30 to 31 do
-	begin
-	gotoxy(i, 13);
-	write('*');
-	end;
-for i:=32 to 36 do
-	begin
-	gotoxy(i, 13);
-	write('*');
-	end;
-for i:=37 to 38 do
-	begin
-	gotoxy(i, 13);
-	write('*');
-	end;
-for i:=42 to 43 do
-	begin
-	gotoxy(i, 13);
-	write('*');
-	end;
-for i:=51 to 52 do
-	begin
-	gotoxy(i, 13);
-	write('*');
-	end;
-for i:=55 to 56 do
-	begin
-	gotoxy(i, 13);
-	write('*');
-	end;
+gotoxy(17, 13);
+write('**');
+gotoxy(24, 13);
+write('***');
+gotoxy(30, 13);
+write('**');
+gotoxy(32, 13);
+write('*****');
+gotoxy(37, 13);
+write('**');
+gotoxy(42, 13);
+write('**');
+gotoxy(51, 13);
+write('**');
+gotoxy(55, 13);
+write('**');
 //8. sor
 delay(100);
-for i:=17 to 18 do
-	begin
-	gotoxy(i, 14);
-	write('*');
-	end;
-for i:=25 to 26 do
-	begin
-	gotoxy(i, 14);
-	write('*');
-	end;
-for i:=30 to 31 do
-	begin
-	gotoxy(i, 14);
-	write('*');
-	end;
-for i:=37 to 38 do
-	begin
-	gotoxy(i, 14);
-	write('*');
-	end;
-for i:=42 to 43 do
-	begin
-	gotoxy(i, 14);
-	write('*');
-	end;
-for i:=51 to 52 do
-	begin
-	gotoxy(i, 14);
-	write('*');
-	end;
-for i:=55 to 56 do
-	begin
-	gotoxy(i, 14);
-	write('*');
-	end;
+gotoxy(17, 14);
+write('**');
+gotoxy(25, 14);
+write('**');
+gotoxy(30, 14);
+write('**');
+gotoxy(37, 14);
+write('**');
+gotoxy(42, 14);
+write('**');
+gotoxy(51, 14);
+write('**');
+gotoxy(55, 14);
+write('**');
 //9. sor
 delay(100);
-for i:=17 to 26 do
-	begin
-	gotoxy(i, 15);
-	write('*');
-	end;
-for i:=29 to 30 do
-	begin
-	gotoxy(i, 15);
-	write('*');
-	end;
-for i:=38 to 39 do
-	begin
-	gotoxy(i, 15);
-	write('*');
-	end;
-for i:=42 to 43 do
-	begin
-	gotoxy(i, 15);
-	write('*');
-	end;
-for i:=51 to 52 do
-	begin
-	gotoxy(i, 15);
-	write('*');
-	end;
-for i:=55 to 64 do
-	begin
-	gotoxy(i, 15);
-	write('*');
-	end;
+gotoxy(17, 15);
+write('**********');
+gotoxy(29, 15);
+write('**');
+gotoxy(38, 15);
+write('**');
+gotoxy(42, 15);
+write('**');
+gotoxy(51, 15);
+write('**');
+gotoxy(55, 15);
+write('**********');
 //10. sor
 delay(100);
-for i:=17 to 26 do
-	begin
-	gotoxy(i, 16);
-	write('*');
-	end;
-for i:=29 to 30 do
-	begin
-	gotoxy(i, 16);
-	write('*');
-	end;
-for i:=38 to 39 do
-	begin
-	gotoxy(i, 16);
-	write('*');
-	end;
-for i:=42 to 43 do
-	begin
-	gotoxy(i, 16);
-	write('*');
-	end;
-for i:=51 to 52 do
-	begin
-	gotoxy(i, 16);
-	write('*');
-	end;
-for i:=55 to 64 do
-	begin
-	gotoxy(i, 16);
-	write('*');
-	end;
+gotoxy(17, 16);
+write('**********');
+gotoxy(29, 16);
+write('**');
+gotoxy(38, 16);
+write('**');
+gotoxy(42, 16);
+write('**');
+gotoxy(51, 16);
+write('**');
+gotoxy(55, 16);
+write('**********');
 //szó vége
 
 //2. szó
 //1. sor
 delay(500);
-for i:=18 to 24 do
-	begin
-	gotoxy(i, 20);
-	write('*');
-	end;
-for i:=29 to 30 do
-	begin
-	gotoxy(i, 20);
-	write('*');
-	end;
-for i:=38 to 39 do
-	begin
-	gotoxy(i, 20);
-	write('*');
-	end;
-for i:=42 to 51 do
-	begin
-	gotoxy(i, 20);
-	write('*');
-	end;
-for i:=54 to 61 do
-	begin
-	gotoxy(i, 20);
-	write('*');
-	end;
+gotoxy(18, 20);
+write('*******');
+gotoxy(29, 20);
+write('**');
+gotoxy(38, 20);
+write('**');
+gotoxy(42, 20);
+write('**********');
+gotoxy(54, 20);
+write('********');
 //2. sor
 delay(100);
-for i:=17 to 25 do
-	begin
-	gotoxy(i, 21);
-	write('*');
-	end;
-for i:=29 to 30 do
-	begin
-	gotoxy(i, 21);
-	write('*');
-	end;
-for i:=38 to 39 do
-	begin
-	gotoxy(i, 21);
-	write('*');
-	end;
-for i:=42 to 51 do
-	begin
-	gotoxy(i, 21);
-	write('*');
-	end;
-for i:=54 to 62 do
-	begin
-	gotoxy(i, 21);
-	write('*');
-	end;
+gotoxy(17, 21);
+write('*********');
+gotoxy(29, 21);
+write('**');
+gotoxy(38, 21);
+write('**');
+gotoxy(42, 21);
+write('**********');
+gotoxy(54, 21);
+write('*********');
 //3. sor
 delay(100);
-for i:=16 to 18 do
-	begin
-	gotoxy(i, 22);
-	write('*');
-	end;
-for i:=24 to 26 do
-	begin
-	gotoxy(i, 22);
-	write('*');
-	end;
-for i:=30 to 31 do
-	begin
-	gotoxy(i, 22);
-	write('*');
-	end;
-for i:=37 to 38 do
-	begin
-	gotoxy(i, 22);
-	write('*');
-	end;
-for i:=42 to 43 do
-	begin
-	gotoxy(i, 22);
-	write('*');
-	end;
-for i:=54 to 56 do
-	begin
-	gotoxy(i, 22);
-	write('*');
-	end;
-for i:=60 to 63 do
-	begin
-	gotoxy(i, 22);
-	write('*');
-	end;
+gotoxy(16, 22);
+write('***');
+gotoxy(24, 22);
+write('***');
+gotoxy(30, 22);
+write('**');
+gotoxy(37, 22);
+write('**');
+gotoxy(42, 22);
+write('**');
+gotoxy(54, 22);
+write('***');
+gotoxy(60, 22);
+write('****');
 //4. sor
 delay(100);
-for i:=16 to 17 do
-	begin
-	gotoxy(i, 23);
-	write('*');
-	end;
-for i:=25 to 26 do
-	begin
-	gotoxy(i, 23);
-	write('*');
-	end;
-for i:=30 to 31 do
-	begin
-	gotoxy(i, 23);
-	write('*');
-	end;
-for i:=37 to 38 do
-	begin
-	gotoxy(i, 23);
-	write('*');
-	end;
-for i:=42 to 43 do
-	begin
-	gotoxy(i, 23);
-	write('*');
-	end;
-for i:=54 to 56 do
-	begin
-	gotoxy(i, 23);
-	write('*');
-	end;
-for i:=60 to 62 do
-	begin
-	gotoxy(i, 23);
-	write('*');
-	end;
+gotoxy(16, 23);
+write('**');
+gotoxy(25, 23);
+write('**');
+gotoxy(30, 23);
+write('**');
+gotoxy(37, 23);
+write('**');
+gotoxy(42, 23);
+write('**');
+gotoxy(54, 23);
+write('***');
+gotoxy(60, 23);
+write('***');
 //5. sor
 delay(100);
-for i:=16 to 17 do
-	begin
-	gotoxy(i, 24);
-	write('*');
-	end;
-for i:=25 to 26 do
-	begin
-	gotoxy(i, 24);
-	write('*');
-	end;
-for i:=31 to 32 do
-	begin
-	gotoxy(i, 24);
-	write('*');
-	end;
-for i:=36 to 37 do
-	begin
-	gotoxy(i, 24);
-	write('*');
-	end;
-for i:=42 to 50 do
-	begin
-	gotoxy(i, 24);
-	write('*');
-	end;
-for i:=54 to 61 do
-	begin
-	gotoxy(i, 24);
-	write('*');
-	end;
+gotoxy(16, 24);
+write('**');
+gotoxy(25, 24);
+write('**');
+gotoxy(31, 24);
+write('**');
+gotoxy(36, 24);
+write('**');
+gotoxy(42, 24);
+write('*********');
+gotoxy(54, 24);
+write('********');
 //6. sor
 delay(100);
-for i:=16 to 17 do
-	begin
-	gotoxy(i, 25);
-	write('*');
-	end;
-for i:=25 to 26 do
-	begin
-	gotoxy(i, 25);
-	write('*');
-	end;
-for i:=31 to 32 do
-	begin
-	gotoxy(i, 25);
-	write('*');
-	end;
-for i:=36 to 37 do
-	begin
-	gotoxy(i, 25);
-	write('*');
-	end;
-for i:=42 to 50 do
-	begin
-	gotoxy(i, 25);
-	write('*');
-	end;
-for i:=54 to 60 do
-	begin
-	gotoxy(i, 25);
-	write('*');
-	end;
+gotoxy(16, 25);
+write('**');
+gotoxy(25, 25);
+write('**');
+gotoxy(31, 25);
+write('**');
+gotoxy(36, 25);
+write('**');
+gotoxy(42, 25);
+write('*********');
+gotoxy(54, 25);
+write('*******');
 //7. sor
 delay(100);
-for i:=16 to 17 do
-	begin
-	gotoxy(i, 26);
-	write('*');
-	end;
-for i:=25 to 26 do
-	begin
-	gotoxy(i, 26);
-	write('*');
-	end;
-for i:=32 to 33 do
-	begin
-	gotoxy(i, 26);
-	write('*');
-	end;
-for i:=35 to 36 do
-	begin
-	gotoxy(i, 26);
-	write('*');
-	end;
-for i:=42 to 43 do
-	begin
-	gotoxy(i, 26);
-	write('*');
-	end;
-for i:=54 to 56 do
-	begin
-	gotoxy(i, 26);
-	write('*');
-	end;
-for i:=58 to 61 do
-	begin
-	gotoxy(i, 26);
-	write('*');
-	end;
+gotoxy(16, 26);
+write('**');
+gotoxy(25, 26);
+write('**');
+gotoxy(32, 26);
+write('**');
+gotoxy(35, 26);
+write('**');
+gotoxy(42, 26);
+write('**');
+gotoxy(54, 26);
+write('***');
+gotoxy(58, 26);
+write('***');
 //8. sor
 delay(100);
-for i:=16 to 18 do
-	begin
-	gotoxy(i, 27);
-	write('*');
-	end;
-for i:=24 to 26 do
-	begin
-	gotoxy(i, 27);
-	write('*');
-	end;
-for i:=24 to 26 do
-	begin
-	gotoxy(i, 27);
-	write('*');
-	end;
-for i:=32 to 36 do
-	begin
-	gotoxy(i, 27);
-	write('*');
-	end;
-for i:=42 to 43 do
-	begin
-	gotoxy(i, 27);
-	write('*');
-	end;
-for i:=54 to 56 do
-	begin
-	gotoxy(i, 27);
-	write('*');
-	end;
-for i:=60 to 62 do
-	begin
-	gotoxy(i, 27);
-	write('*');
-	end;
+gotoxy(16, 27);
+write('***');
+gotoxy(24, 27);
+write('***');
+gotoxy(32, 27);
+write('*****');
+gotoxy(42, 27);
+write('**');
+gotoxy(54, 27);
+write('***');
+gotoxy(60, 27);
+write('***');
 //9. sor
 delay(100);
-for i:=17 to 25 do
-	begin
-	gotoxy(i, 28);
-	write('*');
-	end;
-for i:=33 to 35 do
-	begin
-	gotoxy(i, 28);
-	write('*');
-	end;
-for i:=42 to 51 do
-	begin
-	gotoxy(i, 28);
-	write('*');
-	end;
-for i:=54 to 56 do
-	begin
-	gotoxy(i, 28);
-	write('*');
-	end;
-for i:=61 to 63 do
-	begin
-	gotoxy(i, 28);
-	write('*');
-	end;
+gotoxy(17, 28);
+write('*********');
+gotoxy(33, 28);
+write('***');
+gotoxy(42, 28);
+write('**********');
+gotoxy(54, 28);
+write('***');
+gotoxy(61, 28);
+write('***');
 //10. sor
-for i:=18 to 24 do
-	begin
-	gotoxy(i, 29);
-	write('*');
-	end;
-for i:=34 to 34 do
-	begin
-	gotoxy(i, 29);
-	write('*');
-	end;
-for i:=42 to 51 do
-	begin
-	gotoxy(i, 29);
-	write('*');
-	end;
-for i:=54 to 56 do
-	begin
-	gotoxy(i, 29);
-	write('*');
-	end;
-for i:=62 to 64 do
-	begin
-	gotoxy(i, 29);
-	write('*');
-	end;
+gotoxy(18, 29);
+write('*******');
+gotoxy(34, 29);
+write('*');
+gotoxy(42, 29);
+write('**********');
+gotoxy(54, 29);
+write('***');
+gotoxy(62, 29);
+write('***');
 //vége
 writeln;
 end;		//GAME OVER-------------------------------------------------
@@ -1475,7 +1097,6 @@ if keypressed
 		 if ((ord(c)=72) and (ord(cel)=80)) or ((ord(cel)=72) and (ord(c)=80)) or
 		 	((ord(c)=77) and (ord(cel)=75)) or ((ord(c)=75) and (ord(cel)=77))
 			then c:=cel;
-		 
 		 end;
 cel:=c;
 
