@@ -5,7 +5,7 @@ uses crt;
 const max=10000;
 
 var harveg, opt:boolean;
-var c, b, omozg, nul:char;
+var c, b, omozg, nul, pmozg, pel:char;
 var otart, oel, gyor:integer;
 var ohosz:integer;
 var mag, szel:integer;
@@ -1001,6 +1001,11 @@ memx[1]:=mag+1;
 memy[1]:=mag+1;
 
 end;		//rögzítés--------------------------------------------------
+
+
+
+
+
 repeat
 begin		//előkészítés-----------------------------------------------
 clrscr;
@@ -1010,15 +1015,21 @@ end;		//előkészítés-----------------------------------------------
 
 
 
+
+
+
+
+
+
 if (fo=3) then
 begin		//MAIN MENU-------------------------------------------------
 clrscr;
 m:=1;
 mozg:='a';
-start(27, 4);
-options(22, 11);
-exit(31, 18);
-nyil(21, 4);
+start(27, 8);
+options(22, 16);
+exit(31, 24);
+nyil(21, 8);
 harveg:=false;
 
 repeat
@@ -1040,13 +1051,13 @@ if m=4 then m:=3;
 
 if m<>m2
 	then begin
-		 if m2=1 then nyilur(21, 4);
-		 if m2=2 then nyilur(16, 11);
-		 if m2=3 then nyilur(25, 18);
+		 if m2=1 then nyilur(21, 8);
+		 if m2=2 then nyilur(16, 16);
+		 if m2=3 then nyilur(25, 24);
 		 
-		 if m=1 then nyil(21, 4);
-		 if m=2 then nyil(16, 11);
-		 if m=3 then nyil(25, 18);
+		 if m=1 then nyil(21, 8);
+		 if m=2 then nyil(16, 16);
+		 if m=3 then nyil(25, 24);
 		 end;
 
 
@@ -1074,9 +1085,12 @@ end;		//MAIN MENU-------------------------------------------------
 
 
 
+
 if (fo=2) then
 begin		//beállítások-----------------------------------------------
 clrscr;
+pmozg:='a';
+pel:=pmozg;
 omozg:='a';
 otart:=1;
 oel:=otart;
@@ -1087,9 +1101,10 @@ gotoxy(1, 2);
 write('--------');
 
 gotoxy(1, 5);
-write('> Field size');
+write('> Field size:  25x38     ');
 begin
-
+gotoxy(16, 5);
+write(mag, 'x', szel, '     ');
 end;
 gotoxy(3, 7);
 write('Start poz');
@@ -1100,7 +1115,7 @@ gotoxy(3, 9);
 write('Snake length   < 5 >');
 begin
 gotoxy(20, 9);
-write(ohosz, ' >');
+write(ohosz-1, ' >');
 end;
 gotoxy(3, 11);
 write('Speed   < normal >');
@@ -1190,32 +1205,139 @@ if otart<>oel
 		 		 
 		 end;
 
-if (ord(omozg)=13) and (otart=1)
+if (ord(omozg)=13) and (otart=1) (*field size*)
 	then begin
-		 ////////////////////////////////////
+		 clrscr;
+		 palya(mag, szel);
+		 pmozg:='a';
+		 pel:=pmozg;
+		 
+		 repeat
+		 if keypressed 
+			then begin
+				 pmozg:=readkey;
+				 end;
+		 
+		 
+		 case ord(pmozg) of
+		 72: mag:=mag-1;	(*fel*)
+		 80: mag:=mag+1;	(*le*)
+		 77: szel:=szel+1;	(*jobb*)
+		 75: szel:=szel-1;	(*bal*)
+		 end;
+		 
+		 if mag<7 then mag:=7;
+		 if mag>35 then mag:=35;
+		 if szel<11 then szel:=11;
+		 if szel>55 then szel:=55;
+		 
+		 if pmozg<>pel
+			then begin
+				 clrscr;
+				 palya(mag, szel);
+				 
+				 
+				 
+				 end;
+		 
+		 if (ord(pmozg)<>13)
+		 then begin 
+			  pmozg:='a';
+			  pel:=pmozg;
+			  end;
+		 
+		 if keypressed 
+			then begin
+				 pmozg:=readkey;
+				 end;
+		 until (ord(pmozg)=13);
+		 
+		 begin
+		 clrscr;
+		 
+		 gotoxy(1, 1);
+		 write('Options|');
+		 gotoxy(1, 2);
+		 write('--------');
+		 
+		 gotoxy(1, 5);
+		 write('> Field size:  25x38     ');
+		 begin
+		 gotoxy(16, 5);
+		 write(mag, 'x', szel, '     ');
+		 end;
+		 gotoxy(3, 7);
+		 write('Start poz');
+		 begin
+		 
+		 end;
+		 gotoxy(3, 9);
+		 write('Snake length   < 5 >');
+		 begin
+		 gotoxy(20, 9);
+		 write(ohosz-1, ' >     ');
+		 end;
+		 gotoxy(3, 11);
+		 write('Speed   < normal >');
+		 begin
+		 if gyor=1
+		 	then begin
+		 		gotoxy(13, 11);
+		 		write('very slow >');
+		 		end;
+		 
+		 if gyor=2
+		 	then begin
+		 		gotoxy(13, 11);
+		 		write('slow >      ');
+		 		end;
+		 
+		 if gyor=3
+		 	then begin
+		 		gotoxy(13, 11);
+		 		write('normal >      ');
+		 		end;
+		 
+		 if gyor=4
+		 	then begin
+		 		gotoxy(13, 11);
+		 		write('fast >      ');
+		 		end;
+		 
+		 if gyor=5
+		 	then begin
+		 		gotoxy(13, 11);
+		 		write('very fast >');
+		 		end;
+		 end;	
+		 gotoxy(3, 21);
+		 write('reset');
+		 gotoxy(3, 23);
+		 write('MAIN MENU');
+		 end;
 		 end;
 
-if (ord(omozg)=13) and (otart=2)
+if (ord(omozg)=13) and (otart=2) (*start poz*)
 	then begin
 		 ///////////////////////////////////
 		 end;
 
-if ((ord(omozg)=77) or (ord(omozg)=75)) and (otart=3)
+if ((ord(omozg)=77) or (ord(omozg)=75)) and (otart=3) (*length*)
 	then begin
 		 case ord(omozg) of
 		 77: ohosz:=ohosz+1;	(*jobb*)
 		 75: ohosz:=ohosz-1;	(*bal*)
 		 end;
-		 if ohosz<1 then ohosz:=(((szel-2)*(mag-2))-1);
-		 if ohosz>((szel-2)*(mag-2)) then ohosz:=1;
+		 if ohosz<2 then ohosz:=(((szel-2)*(mag-2)));
+		 if ohosz>((szel-2)*(mag-2)) then ohosz:=2;
 		 
 				 begin
 				 gotoxy(20, 9);
-				 write(ohosz-1, ' >  ');
+				 write(ohosz-1, ' >    ');
 				 end;
 		 end;
 
-if ((ord(omozg)=77) or (ord(omozg)=75)) and (otart=4)
+if ((ord(omozg)=77) or (ord(omozg)=75)) and (otart=4) (*speed*)
 	then begin
 		 case ord(omozg) of
 		 77: gyor:=gyor+1;	(*jobb*)
@@ -1256,12 +1378,33 @@ if ((ord(omozg)=77) or (ord(omozg)=75)) and (otart=4)
 				 end;
 		 end;
 
-if (ord(omozg)=13) and (otart=5)
+if (ord(omozg)=13) and (otart=5) (*reset*)
 	then begin
-		 ///////////////////////////////////////
+		 gotoxy(3, 5);
+		 write('Field size:  25x38');
+		 begin
+		 mag:=25;
+		 szel:=38;
+		 end;
+		 gotoxy(3, 7);
+		 write('Start poz');
+		 gotoxy(3, 9);
+		 write('Snake length   < 5 >   ');
+		 begin
+		 ohosz:=6;
+		 end;
+		 gotoxy(3, 11);
+		 write('Speed   < normal >     ');
+		 begin
+		 gyor:=3;
+		 end;
+		 gotoxy(3, 21);
+		 write('reset');
+		 gotoxy(3, 23);
+		 write('MAIN MENU');
 		 end;
 
-if (ord(omozg)=13) and (otart=6)
+if (ord(omozg)=13) and (otart=6) (*main menu*)
 	then begin
 		 opt:=true;
 		 fo:=3;
@@ -1278,6 +1421,12 @@ if keypressed
 until opt;
 opt:=false;
 end;		//beállítások-----------------------------------------------
+
+
+
+
+
+
 
 
 
@@ -1313,6 +1462,11 @@ write('@');
 
 gotoxy(x, y);
 end;		//alap------------------------------------------------------
+
+
+
+
+
 
 
 
@@ -1434,6 +1588,13 @@ UNTIL (c in['v', 'V']);
 end;		//mozgás----------------------------------------------------
 
 
+
+
+
+
+
+
+
 if (fo=1) then
 begin		//várakozás-------------------------------------------------
 gotoxy(1, mag);
@@ -1451,5 +1612,5 @@ end;		//várakozás-------------------------------------------------
 until fo=10;
 
 
-gotoxy(1, mag);
+gotoxy(1, 35);
 END.
