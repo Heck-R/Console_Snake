@@ -1033,11 +1033,8 @@ nyil(21, 8);
 harveg:=false;
 
 repeat
+mozg:=readkey;
 
-if keypressed 
-	then begin
-		 mozg:=readkey;
-		 end;
 if (ord(mozg)=13) then harveg:=true;
 m2:=m;
 
@@ -1066,12 +1063,6 @@ if (m=2) and (ord(mozg)=13) then fo:=2;
 if (m=3) and (ord(mozg)=13) then fo:=10;
 
 mozg:='a';
-
-if keypressed 
-	then begin
-		 mozg:=readkey;
-		 end;
-
 
 until harveg;
 
@@ -1157,10 +1148,7 @@ write('MAIN MENU');
 
 
 repeat
-if keypressed 
-	then begin
-		 omozg:=readkey;
-		 end;
+omozg:=readkey;
 
 case ord(omozg) of
 72: otart:=otart-1;	(*fel*)
@@ -1213,10 +1201,7 @@ if (ord(omozg)=13) and (otart=1) (*field size*)
 		 pel:=pmozg;
 		 
 		 repeat
-		 if keypressed 
-			then begin
-				 pmozg:=readkey;
-				 end;
+		 pmozg:=readkey;
 		 
 		 
 		 case ord(pmozg) of
@@ -1246,11 +1231,8 @@ if (ord(omozg)=13) and (otart=1) (*field size*)
 			  pel:=pmozg;
 			  end;
 		 
-		 if keypressed 
-			then begin
-				 pmozg:=readkey;
-				 end;
 		 until (ord(pmozg)=13);
+		 
 		 
 		 begin
 		 clrscr;
@@ -1413,12 +1395,8 @@ if (ord(omozg)=13) and (otart=6) (*main menu*)
 oel:=otart;
 omozg:='a';
 
-if keypressed 
-	then begin
-		 omozg:=readkey;
-		 end;
-
 until opt;
+
 opt:=false;
 end;		//beállítások-----------------------------------------------
 
