@@ -4,9 +4,9 @@ uses crt;
 
 const max=10000;
 
-var c, p, v, b, b2: char;
+var c, p, b: char;
 var x, y:integer;
-var i, h:integer;
+var i, h, fo:integer;
 var memx: array[1..max] of integer;
 var memy: array[1..max] of integer;
 var maxx, maxy:integer;
@@ -717,11 +717,208 @@ for i:=1 to 24 do
 end;		//Palya-----------------------------------------------------
 
 
+procedure nyil(startx:integer; starty:integer);
+begin		//Nyil------------------------------------------------------
+gotoxy(startx, starty);
+write('**');
+gotoxy(startx+1, starty+1);
+write('**');
+gotoxy(startx+2, starty+2);
+write('**');
+gotoxy(startx+1, starty+3);
+write('**');
+gotoxy(startx, starty+4);
+write('**');
+end;
+
+
+procedure start(startx:integer; starty:integer);
+begin		//START-----------------------------------------------------
+//S
+gotoxy(startx, starty);
+write('*****');
+gotoxy(startx, starty+1);
+write('*');
+gotoxy(startx, starty+2);
+write('*****');
+gotoxy(startx+4, starty+3);
+write('*');
+gotoxy(startx, starty+4);
+write('*****');
+//T
+gotoxy(startx+6, starty);
+write('*****');
+gotoxy(startx+8, starty+1);
+write('*');
+gotoxy(startx+8, starty+2);
+write('*');
+gotoxy(startx+8, starty+3);
+write('*');
+gotoxy(startx+8, starty+4);
+write('*');
+//A
+gotoxy(startx+14, starty);
+write('*');
+gotoxy(startx+13, starty+1);
+write('***');
+gotoxy(startx+13, starty+2);
+write('*');
+gotoxy(startx+15, starty+2);
+write('*');
+gotoxy(startx+12, starty+3);
+write('*****');
+gotoxy(startx+12, starty+4);
+write('*');
+gotoxy(startx+16, starty+4);
+write('*');
+//R
+gotoxy(startx+18, starty);
+write('***');
+gotoxy(startx+18, starty+1);
+write('*');
+gotoxy(startx+20, starty+1);
+write('**');
+gotoxy(startx+18, starty+2);
+write('***');
+gotoxy(startx+18, starty+3);
+write('*');
+gotoxy(startx+20, starty+3);
+write('*');
+gotoxy(startx+18, starty+4);
+write('*');
+gotoxy(startx+21, starty+4);
+write('*');
+//T
+gotoxy(startx+23, starty);
+write('*****');
+gotoxy(startx+25, starty+1);
+write('*');
+gotoxy(startx+25, starty+2);
+write('*');
+gotoxy(startx+25, starty+3);
+write('*');
+gotoxy(startx+25, starty+4);
+write('*');
+end;
+
+
+procedure options(startx:integer; starty:integer);
+begin		//OPTIONS---------------------------------------------------
+//O
+gotoxy(startx+1, starty);
+write('***');
+gotoxy(startx, starty+1);
+write('**');
+gotoxy(startx+3, starty+1);
+write('**');
+gotoxy(startx, starty+2);
+write('*');
+gotoxy(startx+4, starty+2);
+write('*');
+gotoxy(startx, starty+3);
+write('**');
+gotoxy(startx+3, starty+3);
+write('**');
+gotoxy(startx+1, starty+4);
+write('***');
+//P
+gotoxy(startx+6, starty);
+write('***');
+gotoxy(startx+6, starty+1);
+write('*');
+gotoxy(startx+8, starty+1);
+write('**');
+gotoxy(startx+6, starty+2);
+write('***');
+gotoxy(startx+6, starty+3);
+write('*');
+gotoxy(startx+6, starty+4);
+write('*');
+//T
+gotoxy(startx+11, starty);
+write('*****');
+gotoxy(startx+13, starty+1);
+write('*');
+gotoxy(startx+13, starty+2);
+write('*');
+gotoxy(startx+13, starty+3);
+write('*');
+gotoxy(startx+13, starty+4);
+write('*');
+//I
+gotoxy(startx+17, starty);
+write('***');
+gotoxy(startx+18, starty+1);
+write('*');
+gotoxy(startx+18, starty+2);
+write('*');
+gotoxy(startx+18, starty+3);
+write('*');
+gotoxy(startx+17, starty+4);
+write('***');
+//O
+gotoxy(startx+22, starty);
+write('***');
+gotoxy(startx+21, starty+1);
+write('**');
+gotoxy(startx+24, starty+1);
+write('**');
+gotoxy(startx+21, starty+2);
+write('*');
+gotoxy(startx+25, starty+2);
+write('*');
+gotoxy(startx+21, starty+3);
+write('**');
+gotoxy(startx+24, starty+3);
+write('**');
+gotoxy(startx+22, starty+4);
+write('***');
+//N
+gotoxy(startx+27, starty);
+write('**');
+gotoxy(startx+31, starty);
+write('*');
+gotoxy(startx+27, starty+1);
+write('***');
+gotoxy(startx+31, starty+1);
+write('*');
+gotoxy(startx+27, starty+2);
+write('*');
+gotoxy(startx+29, starty+2);
+write('*');
+gotoxy(startx+31, starty+2);
+write('*');
+gotoxy(startx+27, starty+3);
+write('*');
+gotoxy(startx+29, starty+3);
+write('***');
+gotoxy(startx+27, starty+4);
+write('*');
+gotoxy(startx+30, starty+4);
+write('**');
+//S
+gotoxy(startx+33, starty);
+write('*****');
+gotoxy(startx+33, starty+1);
+write('*');
+gotoxy(startx+33, starty+2);
+write('*****');
+gotoxy(startx+37, starty+3);
+write('*');
+gotoxy(startx+33, starty+4);
+write('*****');
+end;
+
+
+
+
 BEGIN
 repeat
-begin		//alap beállítások------------------------------------------
+begin		//alap------------------------------------------------------
 clrscr;
+randomize;
 
+fo:=2;
 palya;
 x:=10;
 y:=10;
@@ -734,7 +931,7 @@ c:=readkey;
 
 maxx:=5;
 maxy:=5;
-randomize;
+
 repeat
 xcsill:=random(36)+2;
 ycsill:=random(23)+2;
@@ -743,7 +940,7 @@ gotoxy(xcsill, ycsill);
 write('@');
 
 gotoxy(x, y);
-end;		//alap beállítások------------------------------------------
+end;		//alap------------------------------------------------------
 
 
 
@@ -753,6 +950,19 @@ end;		//alap beállítások------------------------------------------
 
 
 
+if (fo=1) then
+begin		//beállítások-----------------------------------------------
+
+end;		//beállítások-----------------------------------------------
+
+
+
+
+
+
+
+
+if (fo=2) then
 begin		//mozgás----------------------------------------------------
 REPEAT
 if keypressed 
@@ -829,10 +1039,12 @@ if (x<2) or (x>38) or (y<2) or(y>24)
 				 end;
 		 end;
 
-
-gotoxy(x, y);
-write('*');
-delay(100);
+if not (x<2) and not (y<2) and not (x>38) and not (y>24)
+	then begin
+		 gotoxy(x, y);
+		 write('*');
+		 delay(100);
+		 end;
 
 
 if not (c in ['v', 'V'])
@@ -846,35 +1058,20 @@ UNTIL (c in['v', 'V']);
 end;		//mozgás----------------------------------------------------
 
 
-
-
-
-
-
-
-
-
-begin		//újra kezdés-----------------------------------------------
+if (fo=2) then
+begin		//várakozás-------------------------------------------------
 gotoxy(1, 25);
-write('Try again? yes(y) or no(n): ');
-repeat
 if keypressed 
 	then begin
 		 repeat
-		 b2:=readkey;
+		 b:=readkey;
+		 b:=b;
 		 until (not keypressed);
 		 end;
 b:=readkey;
+end;		//várakozás-------------------------------------------------
 
-if (ord(b)<>0) 
-	then begin
-		 if (b in ['y', 'n'])
-			then v:=b;
-		 end;
-until (b in ['y', 'n']);
-end;		//újra kezdés-----------------------------------------------
-
-until v<>'y';
+until fo=10;
 
 
 gotoxy(1, 25);
