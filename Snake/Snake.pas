@@ -8,6 +8,7 @@ var harveg, opt:boolean;
 var omozg, pmozg, spmozg:char;
 var cel, pel:char;
 var c, b, nul:char;
+var score, coll:integer;
 var otart, oel, gyor:integer;
 var ohosz, lepes:integer;
 var mag, szel:integer;
@@ -613,7 +614,7 @@ end;		//EXIT------------------------------------------------------
 
 
 procedure minigame(x:integer; y:integer);
-begin
+begin       //MINIGAME--------------------------------------------------
 //G
 gotoxy(x, y);
 write('*****');
@@ -666,7 +667,7 @@ gotoxy(x+18, y+4);
 write('*');
 gotoxy(x+18, y+5);
 write('****');
-end;
+end;        //MINIGAME--------------------------------------------------
 
 
 
@@ -1274,7 +1275,8 @@ write('e - End');
 end;
 (*side bar*)
 
-
+score:=0;
+coll:=0;
 lepes:=1;
 palya(mag, szel);
 memx[1]:=x;
@@ -1383,6 +1385,20 @@ if (x<2) or (x>szel-1) or (y<2) or(y>mag-1)
 			then begin
 				 maxx:=maxx+1;
 				 maxy:=maxy+1;
+				 
+				 coll:=coll+1;
+				 case gyor of
+				 1:score:=score+1;
+				 2:score:=score+2;
+				 3:score:=score+3;
+				 4:score:=score+4;
+				 5:score:=score+5;
+				 end;
+				 gotoxy(72, 12);
+				 write(score);
+				 gotoxy(74, 14);
+				 write(coll);
+				 
 				 repeat
 				 h:=1;
 				 for i:=1 to maxx do
