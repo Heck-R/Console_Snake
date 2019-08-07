@@ -1,4 +1,4 @@
-program nagykigyo;
+program mozgkigyo;
 
 uses crt;
 
@@ -11,32 +11,35 @@ var xt: array[2..max] of integer;
 var yt: array[2..max] of integer;
 
 begin	
-x:=20;
+x:=10;
 y:=10;
 gotoxy(x, y);
 write('*');
 for i:=2 to max do
 	begin
-	xt[i]:=20;
+	xt[i]:=10;
 	yt[i]:=10;
 	end;
-
+c:=readkey;
 
 	repeat
 		
-		c:=readkey;
+		
 		clrscr;
 		
-		if ord(c)=0
+		if keypressed 
 			then begin
-				 c:=readkey;
+				 c:=readkey 
+				 end;
+		
 				 case ord(c) of
 				 72: y:=y-1;	//fel
 				 80: y:=y+1;	//le
 				 77: x:=x+1;	//jobb
 				 75: x:=x-1;	//bal
 				 end;
-				 end;
+		
+		
 		
 		if (x<1) or (x>80) or (y<1) or(y>25)
 		then begin
@@ -69,7 +72,12 @@ for i:=2 to max do
 		gotoxy(x, y);
 		write('*');
 		
+		delay(100);
 		
+		if keypressed 
+			then begin
+				 c:=readkey 
+				 end;
 		
 	until (c in['v', 'V']); 
 	
