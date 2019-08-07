@@ -681,10 +681,6 @@ if i=length(sckod)
 				 close(tart);
 				 end;
 				 (*mentés*)
-				 
-				 clrscr;
-				 
-				 miniscores(5, 6);
 				 end;
 		 
 		 if sccommand='delete'
@@ -720,10 +716,6 @@ if i=length(sckod)
 				 close(tart);
 				 end;
 				 (*mentés*)
-				 
-				 clrscr;
-				 
-				 miniscores(5, 6);
 				 end;
 		 
 		 if sccommand='rename'
@@ -755,10 +747,6 @@ if i=length(sckod)
 				 close(tart);
 				 end;
 				 (*mentés*)
-				 
-				 clrscr;
-				 
-				 miniscores(5, 6);
 				 end;
 		 
 		 if sccommand='reset'
@@ -784,12 +772,12 @@ if i=length(sckod)
 				 close(tart);
 				 end;
 				 (*mentés*)
-				 
-				 clrscr;
-				 
-				 miniscores(5, 6);
 				 end;
 		 
+		 
+		 clrscr;
+				 
+		 miniscores(5, 6);
 		 
 		 cursoroff;
 		 end;
