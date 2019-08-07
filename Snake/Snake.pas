@@ -6,7 +6,9 @@ const max=10000;
 
 var harveg, opt:boolean;
 var c, p, b, omozg: char;
-var otart, oel:integer;
+var otart, oel, gyor:integer;
+var ohosz:integer;
+var mag, szel:integer;
 var x, y:integer;
 var m, m2:integer;
 var mozg:char;
@@ -691,33 +693,32 @@ writeln;
 end;		//GAME OVER-------------------------------------------------
 
 
-procedure palya;
+procedure palya(mag:integer; szel:integer);
 var i:integer;
 begin		//Palya-----------------------------------------------------
-for i:=1 to 38 do
+gotoxy(1, 1);
+for i:=1 to szel do
 	begin
 	write('%');
 	end;
 
 gotoxy(1, 1);
-
-for i:=1 to 24 do
+for i:=1 to mag do
 	begin
-	writeln('%');
+	gotoxy(1, i);
+	write('%');
 	end;
-write('%');
 
-for i:=1 to 38 do
+for i:=1 to szel-1 do
 	begin
 	write('%');
 	end;
 
-for i:=1 to 24 do
+for i:=1 to mag-1 do
 	begin
-	gotoxy(39, i);
-	writeln('%');
+	gotoxy(szel, i);
+	write('%');
 	end;
-
 end;		//Palya-----------------------------------------------------
 
 
@@ -989,8 +990,21 @@ end;		//EXIT------------------------------------------------------
 
 
 BEGIN
+begin		//rögzítés--------------------------------------------------
 randomize;
 cursoroff;
+gyor:=3;
+mag:=25;
+szel:=38;
+ohosz:=5;
+memx[1]:=1;
+memy[1]:=1;
+for i:=2 to max do
+	begin
+	memx[i]:=memx[i-1];
+	memy[i]:=memy[i-1];
+	end;
+end;		//rögzítés--------------------------------------------------
 repeat
 begin		//előkészítés-----------------------------------------------
 clrscr;
@@ -1080,9 +1094,45 @@ gotoxy(1, 5);
 write('> Field size');
 gotoxy(3, 7);
 write('Snake length   < 5 >');
+begin
+gotoxy(20, 7);
+write(ohosz, ' >');
+end;
 gotoxy(3, 9);
 write('Speed   < normal >');
-
+begin
+if gyor=1
+	then begin
+		 gotoxy(13, 9);
+		 write('very slow >');
+		 end;
+ 
+if gyor=2
+	then begin
+		 gotoxy(13, 9);
+		 write('slow >      ');
+		 end;
+ 
+if gyor=3
+	then begin
+		 gotoxy(13, 9);
+		 write('normal >      ');
+		 end;
+ 
+if gyor=4
+	then begin
+		 gotoxy(13, 9);
+		 write('fast >      ');
+		 end;
+ 
+if gyor=5
+	then begin
+		 gotoxy(13, 9);
+		 write('very fast >');
+		 end;
+end;
+gotoxy(3, 21);
+write('reset');
 gotoxy(3, 23);
 write('MAIN MENU');
 
@@ -1099,58 +1149,125 @@ case ord(omozg) of
 80: otart:=otart+1;	(*le*)
 end;
 
-if (otart>4) then otart:=4;
+if (otart>5) then otart:=5;
 if (otart<1) then otart:=1;
 
 
 if otart<>oel
 	then begin
-		 if oel=1 	//töröl
+		 gotoxy(1, 5);
+		 writeln(' ');
+		 gotoxy(1, 7);
+		 writeln(' ');
+		 gotoxy(1, 9);
+		 write(' ');
+		 gotoxy(1, 21);
+		 write(' ');
+		 gotoxy(1, 23);
+		 write(' ');
+
+		 if (otart=1) or (otart=2) or (otart=3)
 			then begin
-				 gotoxy(1, 5);
-				 write(' ');
-				 end;
-		 if oel=2
-			then begin
-				 gotoxy(1, 7);
-				 write(' ');
-				 end;
-		 if oel=3 
-			then begin
-				 gotoxy(1, 9);
-				 write(' ');
-				 end;
-		 if oel=4 
-			then begin
-				 gotoxy(1, 23);
-				 write(' ');
-				 end;	//töröl
-		 
-		 
-		 if otart=1 	//ír
-			then begin
-				 gotoxy(1, 5);
+				 gotoxy(1, 3+(otart*2));
 				 write('>');
 				 end;
-		 if otart=2
-			then begin
-				 gotoxy(1, 7);
-				 write('>');
-				 end;
-		 if otart=3 
-			then begin
-				 gotoxy(1, 9);
-				 write('>');
-				 end;
+
 		 if otart=4 
 			then begin
+				 gotoxy(1, 21);
+				 write('>');
+				 end;
+		 if otart=5
+			then begin
 				 gotoxy(1, 23);
 				 write('>');
-				 end;	//ír
+				 end;
 		 		 
 		 end;
 
-if (ord(omozg)=13) and (otart=4)
+
+
+
+
+
+
+
+
+
+
+
+
+
+if ((ord(omozg)=77) or (ord(omozg)=75)) and (otart=2)
+	then begin
+		 case ord(omozg) of
+		 77: ohosz:=ohosz+1;	(*jobb*)
+		 75: ohosz:=ohosz-1;	(*bal*)
+		 end;
+		 if ohosz<1 then ohosz:=(((szel-2)*(mag-2))-1);
+		 if ohosz>(((szel-2)*(mag-2))-1) then ohosz:=1;
+		 
+				 begin
+				 gotoxy(20, 7);
+				 write(ohosz, ' >  ');
+				 end;
+		 end;
+
+
+
+
+
+
+if ((ord(omozg)=77) or (ord(omozg)=75)) and (otart=3)
+	then begin
+		 case ord(omozg) of
+		 77: gyor:=gyor+1;	(*jobb*)
+		 75: gyor:=gyor-1;	(*bal*)
+		 end;
+		 
+		 if gyor<1 then gyor:=1;
+		 if gyor>5 then gyor:=5;
+		 
+		 if gyor=1
+			then begin
+				 gotoxy(13, 9);
+				 write('very slow >');
+				 end;
+		 
+		 if gyor=2
+			then begin
+				 gotoxy(13, 9);
+				 write('slow >      ');
+				 end;
+		 
+		 if gyor=3
+			then begin
+				 gotoxy(13, 9);
+				 write('normal >      ');
+				 end;
+		 
+		 if gyor=4
+			then begin
+				 gotoxy(13, 9);
+				 write('fast >      ');
+				 end;
+		 
+		 if gyor=5
+			then begin
+				 gotoxy(13, 9);
+				 write('very fast >');
+				 end;
+		 end;
+
+
+
+
+
+
+
+
+
+if (ord(omozg)=13) and (otart=5)
 	then begin
 		 opt:=true;
 		 fo:=3;
@@ -1177,22 +1294,25 @@ end;		//beállítások-----------------------------------------------
 
 if (fo=1) then
 begin		//alap------------------------------------------------------
-palya;
-x:=10;
-y:=10;
+
+
+
+palya(mag, szel);
+x:=(szel div 2);
+y:=(mag div 2);
 memx[1]:=x;
 memy[1]:=y;
 gotoxy(x, y);
 write('*');
 
-maxx:=5;
-maxy:=5;
+maxx:=ohosz;
+maxy:=ohosz;
 
 c:=readkey;
 
 repeat
-xcsill:=random(36)+2;
-ycsill:=random(23)+2;
+xcsill:=random(szel-2)+2;
+ycsill:=random(mag-2)+2;
 until (xcsill<>x) and (ycsill<>y);
 gotoxy(xcsill, ycsill);
 write('@');
@@ -1248,11 +1368,14 @@ for i:=2 to maxx do
 	end;
 
 
-if (x<2) or (x>38) or (y<2) or(y>24)
+if (x<2) or (x>szel-1) or (y<2) or(y>mag-1)
 	then begin
 		 clrscr;
 		 over;
 		 c:='v';
+		 for i:=1 to max do
+	memx[i]:=(szel+1);/////////////////////////////////////////////////////
+	memy[i]:=1;
 		 end
 	else begin;
 		 if (x=xcsill) and (y=ycsill)
@@ -1266,8 +1389,8 @@ if (x<2) or (x>38) or (y<2) or(y>24)
 					if (xcsill=memx[i]) and (ycsill=memy[i])
 						then begin
 							 h:=0;
-							 xcsill:=random(36)+2;
-							 ycsill:=random(23)+2;
+							 xcsill:=random(szel-2)+2;
+							 ycsill:=random(mag-2)+2;
 							 end;
 					end;
 				 until h=1;
@@ -1281,11 +1404,16 @@ if (x<2) or (x>38) or (y<2) or(y>24)
 				 end;
 		 end;
 
-if not (x<2) and not (y<2) and not (x>38) and not (y>24)
+if not (x<2) and not (y<2) and not (x>szel-1) and not (y>mag-1)
 	then begin
 		 gotoxy(x, y);
 		 write('*');
-		 delay(100);
+		 
+		 if (gyor=1) then delay(500);
+		 if (gyor=2) then delay(200);
+		 if (gyor=3) then delay(100);
+		 if (gyor=4) then delay(50);
+		 if (gyor=5) then delay(25);
 		 end;
 
 
@@ -1302,7 +1430,7 @@ end;		//mozgás----------------------------------------------------
 
 if (fo=1) then
 begin		//várakozás-------------------------------------------------
-gotoxy(1, 25);
+gotoxy(1, mag);
 if keypressed 
 	then begin
 		 repeat
@@ -1317,5 +1445,5 @@ end;		//várakozás-------------------------------------------------
 until fo=10;
 
 
-gotoxy(1, 25);
+gotoxy(1, mag);
 END.
