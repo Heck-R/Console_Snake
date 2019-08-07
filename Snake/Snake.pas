@@ -1,25 +1,25 @@
-program funkcio;
+program nagykigyo;
+
 uses crt;
+
+const max=20;
+
 var c: char;
 var x, y:integer;
-var x2, x3, x4, x5, x6:integer;
-var y2, y3, y4, y5, y6:integer;
+var i, j, k:integer;
+var xt: array[2..max] of integer;
+var yt: array[2..max] of integer;
 
 begin	
 x:=20;
 y:=10;
 gotoxy(x, y);
 write('*');
-x2:=20;
-x3:=20;
-x4:=20;
-x5:=20;
-x6:=20;
-y2:=10;
-y3:=10;
-y4:=10;
-y5:=10;
-y6:=10;
+for i:=2 to max do
+	begin
+	xt[i]:=20;
+	yt[i]:=10;
+	end;
 
 
 	repeat
@@ -43,17 +43,16 @@ y6:=10;
 			 
 			 end
 		else begin;
-			 x6:=x5;
-			 x5:=x4;
-			 x4:=x3;
-			 x3:=x2;
-			 x2:=x;
 			 
-			 y6:=y5;
-			 y5:=y4;
-			 y4:=y3;
-			 y3:=y2;
-			 y2:=y;
+			 for j:=max downto 3 do
+			 begin
+			 xt[j]:=xt[j-1];
+			 yt[j]:=yt[j-1];
+			 end;
+			 
+			 xt[2]:=x;
+			 
+			 yt[2]:=y;
 			 end;
 		
 		if x < 1 then x:=1;
@@ -61,21 +60,12 @@ y6:=10;
 		if y < 1 then y:=1;
 		if y > 25 then y:=25;
 		
-		gotoxy(x6, y6);
+		for k:=max downto 2 do
+		begin
+		gotoxy(xt[k], yt[k]);
 		write('*');
-		
-		gotoxy(x5, y5);
-		write('*');
-		
-		gotoxy(x4, y4);
-		write('*');
-		
-		gotoxy(x3, y3);
-		write('*');
-		
-		gotoxy(x2, y2);
-		write('*');
-		
+		end;
+
 		gotoxy(x, y);
 		write('*');
 		
