@@ -5,11 +5,14 @@ uses crt;
 const max=10000;
 
 var harveg, opt:boolean;
-var c, cel, b, omozg, nul, pmozg, pel:char;
+var omozg, pmozg, spmozg:char;
+var cel, pel:char;
+var c, b, nul:char;
 var otart, oel, gyor:integer;
 var ohosz, lepes:integer;
 var mag, szel:integer;
-var x, y:integer;
+var x, y, xel, yel:integer;
+var xarany, yarany:real;
 var m, m2:integer;
 var mozg:char;
 var i, h, fo:integer;
@@ -621,7 +624,12 @@ szel:=38;
 ohosz:=6;
 memx[1]:=mag+1;
 memy[1]:=mag+1;
-
+x:=((szel div 2)+1);
+y:=((mag div 2)+1);
+xel:=x;
+yel:=y;
+xarany:=2;
+yarany:=2;
 end;		//rögzítés--------------------------------------------------
 
 
@@ -819,6 +827,8 @@ if (ord(omozg)=13) and (otart=1) (*field size*)
 	then begin
 		 clrscr;
 		 palya(mag, szel);
+		 gotoxy((((szel-4) div 2)+1), (((mag-1) div 2)+1));
+		 write(szel, 'x', mag);
 		 pmozg:='a';
 		 pel:=pmozg;
 		 
@@ -842,8 +852,8 @@ if (ord(omozg)=13) and (otart=1) (*field size*)
 			then begin
 				 clrscr;
 				 palya(mag, szel);
-				 
-				 
+				 gotoxy((((szel-4) div 2)+1), (((mag-1) div 2)+1));
+				 write(szel, 'x', mag);
 				 
 				 end;
 		 
@@ -919,11 +929,133 @@ if (ord(omozg)=13) and (otart=1) (*field size*)
 		 gotoxy(3, 23);
 		 write('MAIN MENU');
 		 end;
+		 
+		 
+		 for i:=2 to szel-1 do
+			begin
+			if (abs((szel/i)-xarany))<(abs((szel/x)-xarany))
+				then begin
+					 x:=i;
+					 end;
+			end;
+		 for i:=2 to mag-1 do
+			begin
+			if (abs((mag/i)-yarany))<(abs((mag/y)-yarany))
+				then begin
+					 y:=i;
+					 end;
+			end;
+		 
+		 
 		 end;
 
 if (ord(omozg)=13) and (otart=2) (*start poz*)
 	then begin
-		 ///////////////////////////////////
+		 clrscr;
+		 palya(mag, szel);
+		 gotoxy(x, y);
+		 write('*');
+		 
+		 repeat
+		 spmozg:=readkey;
+		 
+		 case ord(spmozg) of
+		 72: y:=y-1;	(*fel*)
+		 80: y:=y+1;	(*le*)
+		 77: x:=x+1;	(*jobb*)
+		 75: x:=x-1;	(*bal*)
+		 end;
+		 
+		 if x<2 then x:=2;
+		 if x>szel-1 then x:=szel-1;
+		 if y<2 then y:=2;
+		 if y>mag-1 then y:=mag-1;
+		 
+		 gotoxy(x, y);
+		 write('*');
+		 
+		 if (xel<>x) or (yel<>y)
+			then begin
+				 gotoxy(xel, yel);
+				 write(' ');
+				 xel:=x;
+				 yel:=y;
+				 end;
+		 
+		 if (ord(spmozg)<>13)
+		 then begin 
+			  spmozg:='a';
+			  end;
+		 until (ord(spmozg)=13);
+		 
+		 
+		 xarany:= (szel/x);
+		 yarany:= (mag/y);
+		 
+		 
+		 begin
+		 clrscr;
+		 
+		 gotoxy(1, 1);
+		 write('Options|');
+		 gotoxy(1, 2);
+		 write('--------');
+		 
+		 gotoxy(1, 5);
+		 write('  Field size:  25x38     ');
+		 begin
+		 gotoxy(16, 5);
+		 write(mag, 'x', szel, '     ');
+		 end;
+		 gotoxy(1, 7);
+		 write('> Start poz');
+		 begin
+		 
+		 end;
+		 gotoxy(3, 9);
+		 write('Snake length   < 5 >');
+		 begin
+		 gotoxy(20, 9);
+		 write(ohosz-1, ' >     ');
+		 end;
+		 gotoxy(3, 11);
+		 write('Speed   < normal >');
+		 begin
+		 if gyor=1
+		 	then begin
+		 		gotoxy(13, 11);
+		 		write('very slow >');
+		 		end;
+		 
+		 if gyor=2
+		 	then begin
+		 		gotoxy(13, 11);
+		 		write('slow >      ');
+		 		end;
+		 
+		 if gyor=3
+		 	then begin
+		 		gotoxy(13, 11);
+		 		write('normal >      ');
+		 		end;
+		 
+		 if gyor=4
+		 	then begin
+		 		gotoxy(13, 11);
+		 		write('fast >      ');
+		 		end;
+		 
+		 if gyor=5
+		 	then begin
+		 		gotoxy(13, 11);
+		 		write('very fast >');
+		 		end;
+		 end;	
+		 gotoxy(3, 21);
+		 write('reset');
+		 gotoxy(3, 23);
+		 write('MAIN MENU');
+		 end;
 		 end;
 
 if ((ord(omozg)=77) or (ord(omozg)=75)) and (otart=3) (*length*)
@@ -1032,15 +1164,27 @@ end;		//beállítások-----------------------------------------------
 
 if (fo=1) then
 begin		//alap------------------------------------------------------
+for i:=2 to szel-1 do
+	begin
+	if (abs((szel/i)-xarany))<(abs((szel/x)-xarany))
+		then begin
+			 x:=i;
+			 end;
+	end;
+for i:=2 to mag-1 do
+	begin
+	if (abs((mag/i)-yarany))<(abs((mag/y)-yarany))
+		then begin
+			 y:=i;
+			 end;
+	end;
+
 lepes:=1;
 palya(mag, szel);
-x:=(szel div 2);
-y:=(mag div 2);
 memx[1]:=x;
 memy[1]:=y;
 gotoxy(x, y);
 write('*');
-
 maxx:=ohosz;
 maxy:=ohosz;
 
