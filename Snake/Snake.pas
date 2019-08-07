@@ -612,6 +612,62 @@ write('*');
 end;		//EXIT------------------------------------------------------
 
 
+procedure minigame(x:integer; y:integer);
+begin
+//G
+gotoxy(x, y);
+write('*****');
+gotoxy(x, y+1);
+write('** **');
+gotoxy(x, y+2);
+write('*');
+gotoxy(x, y+3);
+write('*  **');
+gotoxy(x, y+4);
+write('**  *');
+gotoxy(x, y+5);
+write('*****');
+//A
+gotoxy(x+6, y);
+write('  *  ');
+gotoxy(x+6, y+1);
+write(' *** ');
+gotoxy(x+6, y+2);
+write(' * * ');
+gotoxy(x+6, y+3);
+write('*****');
+gotoxy(x+6, y+4);
+write('*   *');
+gotoxy(x+6, y+5);
+write('*   *');
+//M
+gotoxy(x+12, y);
+write('*   *');
+gotoxy(x+12, y+1);
+write('** **');
+gotoxy(x+12, y+2);
+write('* * *');
+gotoxy(x+12, y+3);
+write('*   *');
+gotoxy(x+12, y+4);
+write('*   *');
+gotoxy(x+12, y+5);
+write('*   *');
+//E
+gotoxy(x+18, y);
+write('****');
+gotoxy(x+18, y+1);
+write('*');
+gotoxy(x+18, y+2);
+write('***');
+gotoxy(x+18, y+3);
+write('***');
+gotoxy(x+18, y+4);
+write('*');
+gotoxy(x+18, y+5);
+write('****');
+end;
+
 
 
 BEGIN
@@ -1178,6 +1234,46 @@ for i:=2 to mag-1 do
 			 y:=i;
 			 end;
 	end;
+
+(*side bar*)
+begin
+for i:=1 to 35 do
+	begin
+	gotoxy(56, i);
+	write('%');
+	end;
+
+gotoxy(57, 9);
+write('%%%%%%%%%%%%%%%%%%%%%%%%');
+minigame(58, 2);
+
+gotoxy(57, 17);
+write('%%%%%%%%%%%%%%%%%%%%%%%%');
+
+gotoxy(65, 12);
+write('Score: 0');
+
+gotoxy(63, 14);
+write('Collected: 0');
+
+gotoxy(62, 18);
+write('|Instructions|');
+
+gotoxy(62, 19);
+write('--------------');
+
+gotoxy(62, 21);
+write('Move - Arrows');
+
+gotoxy(59, 24);
+write('p - Pause');
+
+gotoxy(59, 26);
+write('e - End');
+
+end;
+(*side bar*)
+
 
 lepes:=1;
 palya(mag, szel);
