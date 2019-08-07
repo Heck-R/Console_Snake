@@ -4,8 +4,11 @@ uses crt;
 
 const max=10000;
 
+var harveg:boolean;
 var c, p, b: char;
 var x, y:integer;
+var m, m2:integer;
+var mozg:char;
 var i, h, fo:integer;
 var memx: array[1..max] of integer;
 var memy: array[1..max] of integer;
@@ -729,7 +732,22 @@ gotoxy(startx+1, starty+3);
 write('**');
 gotoxy(startx, starty+4);
 write('**');
-end;
+end;		//Nyil------------------------------------------------------
+
+
+procedure nyilur(startx:integer; starty:integer);
+begin		//Nyilur----------------------------------------------------
+gotoxy(startx, starty);
+write('  ');
+gotoxy(startx+1, starty+1);
+write('  ');
+gotoxy(startx+2, starty+2);
+write('  ');
+gotoxy(startx+1, starty+3);
+write('  ');
+gotoxy(startx, starty+4);
+write('  ');
+end;		//Nyilur----------------------------------------------------
 
 
 procedure start(startx:integer; starty:integer);
@@ -799,7 +817,7 @@ gotoxy(startx+25, starty+3);
 write('*');
 gotoxy(startx+25, starty+4);
 write('*');
-end;
+end;		//START-----------------------------------------------------
 
 
 procedure options(startx:integer; starty:integer);
@@ -907,18 +925,152 @@ gotoxy(startx+37, starty+3);
 write('*');
 gotoxy(startx+33, starty+4);
 write('*****');
-end;
+end;		//OPTIONS---------------------------------------------------
+
+
+procedure exit(startx:integer; starty:integer);
+begin		//EXIT------------------------------------------------------
+//E
+gotoxy(startx, starty);
+write('****');
+gotoxy(startx, starty+1);
+write('*');
+gotoxy(startx, starty+2);
+write('****');
+gotoxy(startx, starty+3);
+write('*');
+gotoxy(startx, starty+4);
+write('****');
+//X
+gotoxy(startx+5, starty);
+write('*');
+gotoxy(startx+9, starty);
+write('*');
+gotoxy(startx+5, starty+1);
+write('**');
+gotoxy(startx+8, starty+1);
+write('**');
+gotoxy(startx+6, starty+2);
+write('***');
+gotoxy(startx+5, starty+3);
+write('**');
+gotoxy(startx+8, starty+3);
+write('**');
+gotoxy(startx+5, starty+4);
+write('*');
+gotoxy(startx+9, starty+4);
+write('*');
+//I
+gotoxy(startx+11, starty);
+write('***');
+gotoxy(startx+12, starty+1);
+write('*');
+gotoxy(startx+12, starty+2);
+write('*');
+gotoxy(startx+12, starty+3);
+write('*');
+gotoxy(startx+11, starty+4);
+write('***');
+//T
+gotoxy(startx+15, starty);
+write('*****');
+gotoxy(startx+17, starty+1);
+write('*');
+gotoxy(startx+17, starty+2);
+write('*');
+gotoxy(startx+17, starty+3);
+write('*');
+gotoxy(startx+17, starty+4);
+write('*');
+end;		//EXIT------------------------------------------------------
 
 
 
 
 BEGIN
-repeat
-begin		//alap------------------------------------------------------
-clrscr;
 randomize;
+repeat
+begin		//előkészítés-----------------------------------------------
+clrscr;
+fo:=3;
+end;		//előkészítés-----------------------------------------------
 
-fo:=2;
+
+
+
+if (fo=3) then
+begin		//MAIN MENU-------------------------------------------------
+clrscr;
+m:=1;
+mozg:='a';
+start(27, 4);
+options(22, 11);
+exit(31, 18);
+nyil(21, 4);
+harveg:=false;
+
+repeat
+
+if keypressed 
+	then begin
+		 mozg:=readkey;
+		 end;
+if (ord(mozg)=13) then harveg:=true;
+m2:=m;
+
+case ord(mozg) of
+72: m:=m-1;	(*fel*)
+80: m:=m+1;	(*le*)
+end;
+
+if m=0 then m:=1;
+if m=4 then m:=3;
+
+if m<>m2
+	then begin
+		 if m2=1 then nyilur(21, 4);
+		 if m2=2 then nyilur(16, 11);
+		 if m2=3 then nyilur(25, 18);
+		 
+		 if m=1 then nyil(21, 4);
+		 if m=2 then nyil(16, 11);
+		 if m=3 then nyil(25, 18);
+		 end;
+
+
+if (m=1) and (ord(mozg)=13) then fo:=1;
+if (m=2) and (ord(mozg)=13) then fo:=2;
+if (m=3) and (ord(mozg)=13) then fo:=10;
+
+mozg:='a';
+
+if keypressed 
+	then begin
+		 mozg:=readkey;
+		 end;
+
+
+until harveg;
+
+clrscr;
+end;		//MAIN MENU-------------------------------------------------
+
+
+
+
+
+
+
+
+if (fo=2) then
+begin		//beállítások-----------------------------------------------
+
+end;		//beállítások-----------------------------------------------
+
+
+
+if (fo=1) then
+begin		//alap------------------------------------------------------
 palya;
 x:=10;
 y:=10;
@@ -927,10 +1079,10 @@ memy[1]:=y;
 gotoxy(x, y);
 write('*');
 
-c:=readkey;
-
 maxx:=5;
 maxy:=5;
+
+c:=readkey;
 
 repeat
 xcsill:=random(36)+2;
@@ -945,24 +1097,7 @@ end;		//alap------------------------------------------------------
 
 
 
-
-
-
-
-
 if (fo=1) then
-begin		//beállítások-----------------------------------------------
-
-end;		//beállítások-----------------------------------------------
-
-
-
-
-
-
-
-
-if (fo=2) then
 begin		//mozgás----------------------------------------------------
 REPEAT
 if keypressed 
@@ -1058,7 +1193,7 @@ UNTIL (c in['v', 'V']);
 end;		//mozgás----------------------------------------------------
 
 
-if (fo=2) then
+if (fo=1) then
 begin		//várakozás-------------------------------------------------
 gotoxy(1, 25);
 if keypressed 
@@ -1069,6 +1204,7 @@ if keypressed
 		 until (not keypressed);
 		 end;
 b:=readkey;
+fo:=3;
 end;		//várakozás-------------------------------------------------
 
 until fo=10;
