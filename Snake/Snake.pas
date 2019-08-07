@@ -404,6 +404,30 @@ write(' **   **  *  *  *** *  * *  *  *   **  *** *  *  *  ***  **  *  * *** ');
 end;        //CONGRATULATIONS-------------------------------------------
 
 
+procedure kori(startx:integer; starty:integer);
+begin       //KORI------------------------------------------------------
+gotoxy(startx, starty);
+write('* * * *     * * * *      * * * *      * * * *      * * * *     * * * *');
+gotoxy(startx, starty+1);
+write('*******     *******      *******      *******      *******     *******');
+gotoxy(startx, starty+2);
+write('*******     *******      *******      *******      *******     *******');
+gotoxy(startx, starty+3);
+write('*******     *******      *******      *******      *******     *******');
+end;        //KORI------------------------------------------------------
+
+
+procedure kori2(startx:integer; starty:integer);
+begin       //KORI2-----------------------------------------------------
+gotoxy(startx, starty);
+write('* * * *    * * * *                                  * * * *    * * * *');
+gotoxy(startx, starty+1);
+write('*******    *******                                  *******    *******');
+gotoxy(startx, starty+2);
+write('*******    *******                                  *******    *******');
+gotoxy(startx, starty+3);
+write('*******    *******                                  *******    *******');
+end;        //KORI2-----------------------------------------------------
 
 
 
@@ -436,8 +460,8 @@ if ioresult<>0 then begin
 					rewrite(tart);
 					for i:=1 to szemely do
 						begin
-						leader[i].nev:='-------';
-						leader[i].pont:=00000;
+						leader[i].nev:='Master';
+						leader[i].pont:=330-(30*(i));
 						end;
 					for i:=1 to szemely do
 						begin
@@ -1355,20 +1379,44 @@ if (score>leader[10].pont)
 		 
 		 (*adatok*)
 		 begin
+		 if rank=1 then
+		 begin
+		 kori(6, 3);
 		 congratulation(6, 8);
+		 kori2(6, 15);
 		 
-		 gotoxy(26, 15);
-		 write('Your score is the ', rank, '. highest!');
+		 gotoxy(25, 16);
+		 write('You are the NUMBER ONE player!!!');
 		 
-		 gotoxy(25, 21);
+		 gotoxy(25, 24);
 		 write('Please enter your name: ');
-		 gotoxy(25, 23);
+		 gotoxy(25, 26);
 		 write('   (max 7 letters)');
-		 gotoxy(49, 21);
+		 gotoxy(49, 24);
 		 readln(neve);
 		 
 		 leader[rank].nev:=neve;
 		 leader[rank].pont:=score;
+		 end;
+		 
+		 
+		 if rank<>1 then
+		 begin
+		 congratulation(6, 8);
+		 
+		 gotoxy(26, 17);
+		 write('Your score is the ', rank, '. highest!');
+		 
+		 gotoxy(25, 24);
+		 write('Please enter your name: ');
+		 gotoxy(25, 26);
+		 write('   (max 7 letters)');
+		 gotoxy(49, 24);
+		 readln(neve);
+		 
+		 leader[rank].nev:=neve;
+		 leader[rank].pont:=score;
+		 end;
 		 end;
 		 (*adatok*)
 		 
