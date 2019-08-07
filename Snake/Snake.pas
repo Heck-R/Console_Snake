@@ -10,13 +10,13 @@ type lead = record
 			pont:integer;
 			end;
 
-
+var neve:string;
 var tart:file of lead;
-var harveg, opt:boolean;
+var harveg, opt, jump:boolean;
 var omozg, pmozg, spmozg, sckey:char;
 var cel, pel:char;
 var c, b, nul:char;
-var score, coll:integer;
+var score, coll, rank:integer;
 var otart, oel, gyor:integer;
 var ohosz, lepes:integer;
 var mag, szel:integer;
@@ -322,25 +322,25 @@ end;        //MINISCORES------------------------------------------------
 procedure keret(startx:integer; starty:integer);
 begin       //KERET-----------------------------------------------------
 gotoxy(startx, starty);
-write('* * *   * ** *   * * *');
+write('* * *   * * * *   * * *');
 gotoxy(startx, starty+1);
-write('*****   ******   *****');
+write('*****   *******   *****');
 gotoxy(startx, starty+2);
-write('*****   ******   *****');
+write('*****   *******   *****');
 
 gotoxy(startx, starty+4);
-write('* * *            * * *');
+write('* * *             * * *');
 gotoxy(startx, starty+5);
-write('*****            *****');
+write('*****             *****');
 gotoxy(startx, starty+6);
-write('*****            *****');
+write('*****             *****');
 
 gotoxy(startx, starty+8);
-write('* * *   * ** *   * * *');
+write('* * *   * * * *   * * *');
 gotoxy(startx, starty+9);
-write('*****   ******   *****');
+write('*****   *******   *****');
 gotoxy(startx, starty+10);
-write('*****   ******   *****');
+write('*****   *******   *****');
 end;        //KERET-----------------------------------------------------
 
 
@@ -389,6 +389,19 @@ write('    ', pontja)
 end;       
 
 
+procedure congratulation(startx:integer; starty:integer);
+begin       //CONGRATULATIONS-------------------------------------------
+gotoxy(startx, starty);
+write(' **   **  *  *  *** ***   **  *** *  * *    **  *** ***  **  *  *  ***');
+gotoxy(startx, starty+1);
+write('*  * *  * ** * *    *  * *  *  *  *  * *   *  *  *   *  *  * ** * *   ');
+gotoxy(startx, starty+2);
+write('*    *  * **** * ** ***  ****  *  *  * *   ****  *   *  *  * ****  ** ');
+gotoxy(startx, starty+3);
+write('*  * *  * * ** *  * * ** *  *  *  *  * *   *  *  *   *  *  * * **    *');
+gotoxy(startx, starty+4);
+write(' **   **  *  *  *** *  * *  *  *   **  *** *  *  *  ***  **  *  * *** ');
+end;        //CONGRATULATIONS-------------------------------------------
 
 
 
@@ -412,6 +425,7 @@ xel:=x;
 yel:=y;
 xarany:=2;
 yarany:=2;
+jump:=false;
 
 begin   (*pontozas*)
 assign(tart, 'scores.dat');
@@ -422,7 +436,7 @@ if ioresult<>0 then begin
 					rewrite(tart);
 					for i:=1 to szemely do
 						begin
-						leader[i].nev:='-----';
+						leader[i].nev:='-------';
 						leader[i].pont:=00000;
 						end;
 					for i:=1 to szemely do
@@ -448,7 +462,10 @@ end;		//rögzítés--------------------------------------------------
 repeat
 begin		//előkészítés-----------------------------------------------
 clrscr;
-fo:=5;
+if (not jump)
+then fo:=5;
+
+jump:=false;
 end;		//előkészítés-----------------------------------------------
 
 
@@ -531,23 +548,23 @@ begin       //SCORES----------------------------------------------------
 repeat
 miniscores(5, 6);
 
-keret(46, 3);
+keret(45, 3);
 
 
 begin
-nevjegy(52, 7, leader[1].nev, leader[1].pont, 1);
+nevjegy(51, 7, leader[1].nev, leader[1].pont, 1);
 
-nevjegy(37, 16, leader[2].nev, leader[2].pont, 2);
-nevjegy(37, 23, leader[3].nev, leader[3].pont, 3);
-nevjegy(37, 30, leader[4].nev, leader[4].pont, 4);
+nevjegy(36, 16, leader[2].nev, leader[2].pont, 2);
+nevjegy(36, 23, leader[3].nev, leader[3].pont, 3);
+nevjegy(36, 30, leader[4].nev, leader[4].pont, 4);
 
-nevjegy(52, 16, leader[5].nev, leader[5].pont, 5);
-nevjegy(52, 23, leader[6].nev, leader[6].pont, 6);
-nevjegy(52, 30, leader[7].nev, leader[7].pont, 7);
+nevjegy(51, 16, leader[5].nev, leader[5].pont, 5);
+nevjegy(51, 23, leader[6].nev, leader[6].pont, 6);
+nevjegy(51, 30, leader[7].nev, leader[7].pont, 7);
 
-nevjegy(67, 16, leader[8].nev, leader[8].pont, 8);
-nevjegy(67, 23, leader[9].nev, leader[9].pont, 9);
-nevjegy(67, 30, leader[10].nev, leader[10].pont, 10);
+nevjegy(66, 16, leader[8].nev, leader[8].pont, 8);
+nevjegy(66, 23, leader[9].nev, leader[9].pont, 9);
+nevjegy(66, 30, leader[10].nev, leader[10].pont, 10);
 end;
 
 sckey:=readkey;
@@ -1301,6 +1318,80 @@ if keypressed
 		 end;
 b:=readkey;
 end;		//várakozás-------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+if (fo=1) then
+begin       //Pontozás--------------------------------------------------
+if (score>leader[10].pont)
+	then begin
+		 clrscr;
+		 cursoron;
+		 
+		 (*helyezés ker*)
+		 begin
+		 rank:=10;
+		 
+		 for i:=9 downto 1 do
+			begin
+			if (score>leader[i].pont) then rank:=i;
+			end;
+		 
+		 for i:=10 downto rank+1 do
+			begin
+			leader[i].nev:= leader[i-1].nev;
+			leader[i].pont:= leader[i-1].pont;
+			end;
+		 end;
+		 (*helyezés ker*)
+		 
+		 
+		 (*adatok*)
+		 begin
+		 congratulation(6, 8);
+		 
+		 gotoxy(26, 15);
+		 write('Your score is the ', rank, '. highest!');
+		 
+		 gotoxy(25, 21);
+		 write('Please enter your name: ');
+		 gotoxy(25, 23);
+		 write('   (max 7 letters)');
+		 gotoxy(49, 21);
+		 readln(neve);
+		 
+		 leader[rank].nev:=neve;
+		 leader[rank].pont:=score;
+		 end;
+		 (*adatok*)
+		 
+		 
+		 (*mentés*)
+		 begin
+		 assign(tart, 'scores.dat');
+		 rewrite(tart);
+		 for i:=1 to szemely do
+			begin
+			write(tart, leader[i]);
+			end;
+		 close(tart);
+		 end;
+		 (*mentés*)
+		 
+		 
+		 cursoroff;
+		 fo:=3;
+		 jump:=true;
+		 end;
+
+end;		//Pontozás--------------------------------------------------
 
 until fo=10;
 
