@@ -4,9 +4,9 @@ uses crt;
 
 const max=100;
 
-var c: char;
+var c, p: char;
 var x, y:integer;
-var i:integer;
+var i, h:integer;
 var memx: array[1..max] of integer;
 var memy: array[1..max] of integer;
 var maxx, maxy:integer;
@@ -731,8 +731,10 @@ c:=readkey;
 maxx:=5;
 maxy:=5;
 randomize;
+repeat
 xcsill:=random(36)+2;
 ycsill:=random(23)+2;
+until (xcsill<>x) and (ycsill<>y);
 gotoxy(xcsill, ycsill);
 write('@');
 
@@ -741,9 +743,15 @@ gotoxy(x, y);
 REPEAT
 if keypressed 
 	then begin
-		 c:=readkey 
+		 c:=readkey;
+		 if (c<>'p') then p:=c;
 		 end;
 
+if c='p' 
+	then begin
+		 readkey;
+		 c:=p
+		 end;
 
 case ord(c) of
 72: y:=y-1;	//fel
@@ -785,9 +793,18 @@ if (x<2) or (x>38) or (y<2) or(y>24)
 			then begin
 				 maxx:=maxx+1;
 				 maxy:=maxy+1;
-				 
-				 xcsill:=random(36)+2;
-				 ycsill:=random(23)+2;
+				 repeat
+				 for i:=1 to maxx do
+					begin
+					h:=1;
+					if (xcsill=memx[i]) and (ycsill=memy[i])
+						then begin
+							 h:=0;
+							 xcsill:=random(36)+2;
+							 ycsill:=random(23)+2;
+							 end;
+					end;
+				 until h=1;
 				 gotoxy(xcsill, ycsill);
 				 write('@');
 				 
@@ -803,7 +820,7 @@ gotoxy(x, y);
 write('*');
 
 if (ord(c)=72) or (ord(c)=80)
-then delay(100);
+then delay(110);
 if (ord(c)=77) or (ord(c)=75)
 then delay(85);
 
