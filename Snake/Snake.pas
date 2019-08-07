@@ -916,10 +916,6 @@ if keypressed
 			then begin
 				 c:=readkey;
 				 end;
-		 if (nul='e')
-			then begin
-				 c:='v';
-				 end;
 		 if (nul='p')
 			then begin
 				 pause(59, 30);
@@ -949,13 +945,19 @@ if keypressed
 				 until keypressed;
 				 nul:=readkey;
 				 
-				 until (ord(nul)=0) or (nul='p');
+				 until (ord(nul)=0) or (nul='p') or (nul='e');
 				 
 				 window(59, 29, 79, 34);
 				 clrscr;
 				 window(1, 1, 80, 35);
 				 
 				 if (ord(nul)=0) then c:=readkey
+				 end;
+				 
+				 
+		 if (nul='e')
+			then begin
+				 c:='v';
 				 end;
 		 
 		 if ((ord(c)=72) and (ord(cel)=80)) or ((ord(cel)=72) and (ord(c)=80)) or
