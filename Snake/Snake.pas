@@ -14,7 +14,7 @@ var ohosz, lepes:integer;
 var mag, szel:integer;
 var x, y, xel, yel:integer;
 var xarany, yarany:real;
-var m, m2:integer;
+var m, m2, sz, sz2:integer;
 var mozg:char;
 var i, h, fo:integer;
 var memx: array[1..max] of integer;
@@ -191,31 +191,46 @@ end;		//Nyilur----------------------------------------------------
 procedure start(startx:integer; starty:integer);
 begin		//START-----------------------------------------------------
 gotoxy(startx, starty);
-write('***** *****   *   ***  *****');
+write('**** *****   *   ***  *****');
 gotoxy(startx, starty+1);
-write('*       *    ***  * **   *  ');
+write('*      *    ***  * **   *  ');
 gotoxy(startx, starty+2);
-write('*****   *    * *  ***    *  ');
+write('****   *    * *  ***    *  ');
 gotoxy(startx, starty+3);
-write('    *   *   ***** * *    *  ');
+write('   *   *   ***** * *    *  ');
 gotoxy(startx, starty+4);
-write('*****   *   *   * *  *   *  ');
+write('****   *   *   * *  *   *  ');
 end;		//START-----------------------------------------------------
 
 
 procedure options(startx:integer; starty:integer);
 begin		//OPTIONS---------------------------------------------------
 gotoxy(startx, starty);
-write(' ***  ***  ***** ***  ***  **  * *****');
+write(' ***  ***  ***** ***  ***  **  * ****');
 gotoxy(startx, starty+1);
-write('** ** * **   *    *  ** ** *** * *    ');
+write('** ** * **   *    *  ** ** *** * *   ');
 gotoxy(startx, starty+2);
-write('*   * ***    *    *  *   * * * * *****');
+write('*   * ***    *    *  *   * * * * ****');
 gotoxy(startx, starty+3);
-write('** ** *      *    *  ** ** * ***     *');
+write('** ** *      *    *  ** ** * ***    *');
 gotoxy(startx, starty+4);
-write(' ***  *      *   ***  ***  *  ** *****');
+write(' ***  *      *   ***  ***  *  ** ****');
 end;		//OPTIONS---------------------------------------------------
+
+
+procedure scores(startx:integer; starty:integer);
+begin		//SCORES----------------------------------------------------
+gotoxy(startx, starty);
+write('****  ***   ***  ***  **** ****');
+gotoxy(startx, starty+1);
+write('*    ** ** ** ** * ** *    *');
+gotoxy(startx, starty+2);
+write('**** *     *   * ***  **** ****');
+gotoxy(startx, starty+3);
+write('   * ** ** ** ** * *  *       *');
+gotoxy(startx, starty+4);
+write('****  ***   ***  *  * **** ****');
+end;        //SCORES----------------------------------------------------
 
 
 procedure exit(startx:integer; starty:integer);
@@ -265,6 +280,26 @@ write('*   * * *** *** ***');
 end;        //PAUSE-----------------------------------------------------
 
 
+procedure crown(x:integer; y:integer);
+begin       //CROWN-----------------------------------------------------
+gotoxy(x, y);
+write('*     *     *');
+gotoxy(x, y+1);
+write('**   ***   **');
+gotoxy(x, y+2);
+write('*** ***** ***');
+gotoxy(x, y+3);
+write('*************');
+gotoxy(x, y+4);
+write('*************');
+gotoxy(x, y+5);
+write('*************');
+gotoxy(x, y+6);
+write('*************');
+end;        //CROWN-----------------------------------------------------
+
+
+
 
 
 
@@ -293,7 +328,7 @@ end;		//rögzítés--------------------------------------------------
 repeat
 begin		//előkészítés-----------------------------------------------
 clrscr;
-fo:=3;
+fo:=5;
 end;		//előkészítés-----------------------------------------------
 
 
@@ -305,15 +340,17 @@ end;		//előkészítés-----------------------------------------------
 
 
 
-if (fo=3) then
+if (fo=5) then
 begin		//MAIN MENU-------------------------------------------------
 clrscr;
 m:=1;
+sz:=1;
 mozg:='a';
-start(27, 8);
-options(22, 16);
-exit(31, 24);
-nyil(21, 8);
+start(8, 10);
+scores(46, 10);
+options(8, 22);
+exit(57, 22);
+nyil(3, 10);
 harveg:=false;
 
 repeat
@@ -321,30 +358,38 @@ mozg:=readkey;
 
 if (ord(mozg)=13) then harveg:=true;
 m2:=m;
+sz2:=sz;
 
 case ord(mozg) of
 72: m:=m-1;	(*fel*)
 80: m:=m+1;	(*le*)
+77: sz:=sz+1;	(*jobb*)
+75: sz:=sz-1;	(*bal*)
 end;
 
 if m=0 then m:=1;
-if m=4 then m:=3;
+if m=3 then m:=2;
+if sz=0 then sz:=1;
+if sz=3 then sz:=2;
 
-if m<>m2
+if (m<>m2) or (sz<>sz2)
 	then begin
-		 if m2=1 then nyilur(21, 8);
-		 if m2=2 then nyilur(16, 16);
-		 if m2=3 then nyilur(25, 24);
+		 if (m2=1) and (sz2=1) then nyilur(3, 10);
+		 if (m2=1) and (sz2=2) then nyilur(41, 10);
+		 if (m2=2) and (sz2=1) then nyilur(3, 22);
+		 if (m2=2) and (sz2=2) then nyilur(52, 22);
 		 
-		 if m=1 then nyil(21, 8);
-		 if m=2 then nyil(16, 16);
-		 if m=3 then nyil(25, 24);
+		 if (m=1) and (sz=1) then nyil(3, 10);
+		 if (m=1) and (sz=2) then nyil(41, 10);
+		 if (m=2) and (sz=1) then nyil(3, 22);
+		 if (m=2) and (sz=2) then nyil(52, 22);
 		 end;
 
 
-if (m=1) and (ord(mozg)=13) then fo:=1;
-if (m=2) and (ord(mozg)=13) then fo:=2;
-if (m=3) and (ord(mozg)=13) then fo:=10;
+if (m=1) and (sz=1) and (ord(mozg)=13) then fo:=1;
+if (m=1) and (sz=2) and (ord(mozg)=13) then fo:=4;
+if (m=2) and (sz=1) and (ord(mozg)=13) then fo:=2;
+if (m=2) and (sz=2) and (ord(mozg)=13) then fo:=10;
 
 mozg:='a';
 
@@ -352,6 +397,19 @@ until harveg;
 
 clrscr;
 end;		//MAIN MENU-------------------------------------------------
+
+
+
+
+
+
+
+
+
+if (fo=3) then
+begin       //SCORES----------------------------------------------------
+
+end;        //SCORES----------------------------------------------------
 
 
 
@@ -781,7 +839,7 @@ if (ord(omozg)=13) and (otart=5) (*reset*)
 if (ord(omozg)=13) and (otart=6) (*main menu*)
 	then begin
 		 opt:=true;
-		 fo:=3;
+		 fo:=5;
 		 end;
 
 oel:=otart;
@@ -1098,7 +1156,7 @@ if keypressed
 		 until (not keypressed);
 		 end;
 b:=readkey;
-fo:=3;
+fo:=5;
 end;		//várakozás-------------------------------------------------
 
 until fo=10;
