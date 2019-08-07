@@ -881,8 +881,8 @@ case ord(omozg) of
 80: otart:=otart+1;	(*le*)
 end;
 
-if (otart>6) then otart:=6;
-if (otart<1) then otart:=1;
+if (otart>6) then otart:=1;
+if (otart<1) then otart:=6;
 
 
 if otart<>oel
@@ -1046,6 +1046,26 @@ if (ord(omozg)=13) and (otart=2) (*start poz*)
 	then begin
 		 clrscr;
 		 palya(mag, szel);
+		 
+		 (*start*)
+		  begin
+		  for i:=2 to szel-1 do
+			  begin
+			  if (abs((szel/i)-xarany))<(abs((szel/x)-xarany))
+				  then begin
+					   x:=i;
+					   end;
+			  end;
+		  for i:=2 to mag-1 do
+			  begin
+			  if (abs((mag/i)-yarany))<(abs((mag/y)-yarany))
+			  then begin
+				   y:=i;
+				   end;
+			  end;
+		 end;
+		 (*start*)
+		 
 		 gotoxy(x, y);
 		 write('*');
 		 
