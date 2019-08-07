@@ -24,296 +24,70 @@ var xcsill, ycsill:integer;
 
 procedure over;
 begin		//GAME OVER-------------------------------------------------
-//1. sor
+//1. szó
 delay(100);
 gotoxy(17, 7);
-write('**********');
-gotoxy(34, 7);
-write('*');
-gotoxy(42, 7);
-write('****');
-gotoxy(49, 7);
-write('****');
-gotoxy(55, 7);
-write('**********');
-//2. sor
+write('**********       *       ****   ****  **********');
 delay(100);
 gotoxy(17, 8);
-write('**********');
-gotoxy(33, 8);
-write('***');
-gotoxy(42, 8);
-write('*****');
-gotoxy(48, 8);
-write('*****');
-gotoxy(55, 8);
-write('**********');
-//3. sor
+write('**********      ***      ***** *****  **********');
 delay(100);
 gotoxy(17, 9);
-write('***');
-gotoxy(26, 9);
-write('*');
-gotoxy(32, 9);
-write('*****');
-gotoxy(42, 9);
-write('**');
-gotoxy(45, 9);
-write('**');
-gotoxy(48, 9);
-write('**');
-gotoxy(51, 9);
-write('**');
-gotoxy(55, 9);
-write('**');
-//4. sor
+write('***      *     *****     ** ** ** **  **');
 delay(100);
 gotoxy(17, 10);
-write('**');
-gotoxy(32, 10);
-write('**');
-gotoxy(35, 10);
-write('**');
-gotoxy(42, 10);
-write('**');
-gotoxy(46, 10);
-write('***');
-gotoxy(51, 10);
-write('**');
-gotoxy(55, 10);
-write('**');
-//5.sor
+write('**             ** **     **  ***  **  **');
 delay(100);
 gotoxy(17, 11);
-write('**');
-gotoxy(31, 11);
-write('**');
-gotoxy(36, 11);
-write('**');
-gotoxy(42, 11);
-write('**');
-gotoxy(47, 11);
-write('*');
-gotoxy(51, 11);
-write('**');
-gotoxy(55, 11);
-write('*********');
-//6. sor
+write('**            **   **    **   *   **  *********');
 delay(100);
 gotoxy(17, 12);
-write('**');
-gotoxy(23, 12);
-write('****');
-gotoxy(31, 12);
-write('*******');
-gotoxy(42, 12);
-write('**');
-gotoxy(51, 12);
-write('**');
-gotoxy(55, 12);
-write('*********');
-//7. sor
+write('**    ****    *******    **       **  *********');
 delay(100);
 gotoxy(17, 13);
-write('**');
-gotoxy(24, 13);
-write('***');
-gotoxy(30, 13);
-write('**');
-gotoxy(32, 13);
-write('*****');
-gotoxy(37, 13);
-write('**');
-gotoxy(42, 13);
-write('**');
-gotoxy(51, 13);
-write('**');
-gotoxy(55, 13);
-write('**');
-//8. sor
+write('**     ***   *********   **       **  **');
 delay(100);
 gotoxy(17, 14);
-write('**');
-gotoxy(25, 14);
-write('**');
-gotoxy(30, 14);
-write('**');
-gotoxy(37, 14);
-write('**');
-gotoxy(42, 14);
-write('**');
-gotoxy(51, 14);
-write('**');
-gotoxy(55, 14);
-write('**');
-//9. sor
+write('**      **   **     **   **       **  **');
 delay(100);
 gotoxy(17, 15);
-write('**********');
-gotoxy(29, 15);
-write('**');
-gotoxy(38, 15);
-write('**');
-gotoxy(42, 15);
-write('**');
-gotoxy(51, 15);
-write('**');
-gotoxy(55, 15);
-write('**********');
-//10. sor
+write('**********  **       **  **       **  **********');
 delay(100);
 gotoxy(17, 16);
-write('**********');
-gotoxy(29, 16);
-write('**');
-gotoxy(38, 16);
-write('**');
-gotoxy(42, 16);
-write('**');
-gotoxy(51, 16);
-write('**');
-gotoxy(55, 16);
-write('**********');
+write('**********  **       **  **       **  **********');
 //szó vége
-
+delay(400);
 //2. szó
-//1. sor
-delay(500);
-gotoxy(18, 20);
-write('*******');
-gotoxy(29, 20);
-write('**');
-gotoxy(38, 20);
-write('**');
-gotoxy(42, 20);
-write('**********');
-gotoxy(54, 20);
-write('********');
-//2. sor
 delay(100);
 gotoxy(17, 21);
-write('*********');
-gotoxy(29, 21);
-write('**');
-gotoxy(38, 21);
-write('**');
-gotoxy(42, 21);
-write('**********');
-gotoxy(54, 21);
-write('*********');
-//3. sor
+write('  *******    **       **  **********  ********');
 delay(100);
-gotoxy(16, 22);
-write('***');
-gotoxy(24, 22);
-write('***');
-gotoxy(30, 22);
-write('**');
-gotoxy(37, 22);
-write('**');
-gotoxy(42, 22);
-write('**');
-gotoxy(54, 22);
-write('***');
-gotoxy(60, 22);
-write('****');
-//4. sor
+gotoxy(17, 22);
+write(' *********   **       **  **********  *********');
 delay(100);
-gotoxy(16, 23);
-write('**');
-gotoxy(25, 23);
-write('**');
-gotoxy(30, 23);
-write('**');
-gotoxy(37, 23);
-write('**');
-gotoxy(42, 23);
-write('**');
-gotoxy(54, 23);
-write('***');
-gotoxy(60, 23);
-write('***');
-//5. sor
+gotoxy(17, 23);
+write('***     ***   **     **   **          ***   ****');
 delay(100);
-gotoxy(16, 24);
-write('**');
-gotoxy(25, 24);
-write('**');
-gotoxy(31, 24);
-write('**');
-gotoxy(36, 24);
-write('**');
-gotoxy(42, 24);
-write('*********');
-gotoxy(54, 24);
-write('********');
-//6. sor
+gotoxy(17, 24);
+write('**       **   **     **   **          ***   *** ');
 delay(100);
-gotoxy(16, 25);
-write('**');
-gotoxy(25, 25);
-write('**');
-gotoxy(31, 25);
-write('**');
-gotoxy(36, 25);
-write('**');
-gotoxy(42, 25);
-write('*********');
-gotoxy(54, 25);
-write('*******');
-//7. sor
+gotoxy(17, 25);
+write('**       **    **   **    *********   ********  ');
 delay(100);
-gotoxy(16, 26);
-write('**');
-gotoxy(25, 26);
-write('**');
-gotoxy(32, 26);
-write('**');
-gotoxy(35, 26);
-write('**');
-gotoxy(42, 26);
-write('**');
-gotoxy(54, 26);
-write('***');
-gotoxy(58, 26);
-write('***');
-//8. sor
+gotoxy(17, 26);
+write('**       **    **   **    *********   *******   ');
 delay(100);
-gotoxy(16, 27);
-write('***');
-gotoxy(24, 27);
-write('***');
-gotoxy(32, 27);
-write('*****');
-gotoxy(42, 27);
-write('**');
-gotoxy(54, 27);
-write('***');
-gotoxy(60, 27);
-write('***');
-//9. sor
+gotoxy(17, 27);
+write('**       **     ** **     **          *** ***   ');
 delay(100);
 gotoxy(17, 28);
-write('*********');
-gotoxy(33, 28);
-write('***');
-gotoxy(42, 28);
-write('**********');
-gotoxy(54, 28);
-write('***');
-gotoxy(61, 28);
-write('***');
-//10. sor
-gotoxy(18, 29);
-write('*******');
-gotoxy(34, 29);
-write('*');
-gotoxy(42, 29);
-write('**********');
-gotoxy(54, 29);
-write('***');
-gotoxy(62, 29);
-write('***');
+write('***     ***     *****     **          ***  ***  ');
+delay(100);
+gotoxy(17, 29);
+write(' *********       ***      **********  ***   *** ');
+delay(100);
+gotoxy(17, 30);
+write('  *******         *       **********  ***    ***');
 //vége
 writeln;
 end;		//GAME OVER-------------------------------------------------
@@ -380,293 +154,63 @@ end;		//Nyilur----------------------------------------------------
 
 procedure start(startx:integer; starty:integer);
 begin		//START-----------------------------------------------------
-//S
 gotoxy(startx, starty);
-write('*****');
+write('***** *****   *   ***  *****');
 gotoxy(startx, starty+1);
-write('*');
+write('*       *    ***  * **   *  ');
 gotoxy(startx, starty+2);
-write('*****');
-gotoxy(startx+4, starty+3);
-write('*');
+write('*****   *    * *  ***    *  ');
+gotoxy(startx, starty+3);
+write('    *   *   ***** * *    *  ');
 gotoxy(startx, starty+4);
-write('*****');
-//T
-gotoxy(startx+6, starty);
-write('*****');
-gotoxy(startx+8, starty+1);
-write('*');
-gotoxy(startx+8, starty+2);
-write('*');
-gotoxy(startx+8, starty+3);
-write('*');
-gotoxy(startx+8, starty+4);
-write('*');
-//A
-gotoxy(startx+14, starty);
-write('*');
-gotoxy(startx+13, starty+1);
-write('***');
-gotoxy(startx+13, starty+2);
-write('*');
-gotoxy(startx+15, starty+2);
-write('*');
-gotoxy(startx+12, starty+3);
-write('*****');
-gotoxy(startx+12, starty+4);
-write('*');
-gotoxy(startx+16, starty+4);
-write('*');
-//R
-gotoxy(startx+18, starty);
-write('***');
-gotoxy(startx+18, starty+1);
-write('*');
-gotoxy(startx+20, starty+1);
-write('**');
-gotoxy(startx+18, starty+2);
-write('***');
-gotoxy(startx+18, starty+3);
-write('*');
-gotoxy(startx+20, starty+3);
-write('*');
-gotoxy(startx+18, starty+4);
-write('*');
-gotoxy(startx+21, starty+4);
-write('*');
-//T
-gotoxy(startx+23, starty);
-write('*****');
-gotoxy(startx+25, starty+1);
-write('*');
-gotoxy(startx+25, starty+2);
-write('*');
-gotoxy(startx+25, starty+3);
-write('*');
-gotoxy(startx+25, starty+4);
-write('*');
+write('*****   *   *   * *  *   *  ');
 end;		//START-----------------------------------------------------
 
 
 procedure options(startx:integer; starty:integer);
 begin		//OPTIONS---------------------------------------------------
-//O
-gotoxy(startx+1, starty);
-write('***');
+gotoxy(startx, starty);
+write(' ***  ***  ***** ***  ***  **  * *****');
 gotoxy(startx, starty+1);
-write('**');
-gotoxy(startx+3, starty+1);
-write('**');
+write('** ** * **   *    *  ** ** *** * *    ');
 gotoxy(startx, starty+2);
-write('*');
-gotoxy(startx+4, starty+2);
-write('*');
+write('*   * ***    *    *  *   * * * * *****');
 gotoxy(startx, starty+3);
-write('**');
-gotoxy(startx+3, starty+3);
-write('**');
-gotoxy(startx+1, starty+4);
-write('***');
-//P
-gotoxy(startx+6, starty);
-write('***');
-gotoxy(startx+6, starty+1);
-write('*');
-gotoxy(startx+8, starty+1);
-write('**');
-gotoxy(startx+6, starty+2);
-write('***');
-gotoxy(startx+6, starty+3);
-write('*');
-gotoxy(startx+6, starty+4);
-write('*');
-//T
-gotoxy(startx+11, starty);
-write('*****');
-gotoxy(startx+13, starty+1);
-write('*');
-gotoxy(startx+13, starty+2);
-write('*');
-gotoxy(startx+13, starty+3);
-write('*');
-gotoxy(startx+13, starty+4);
-write('*');
-//I
-gotoxy(startx+17, starty);
-write('***');
-gotoxy(startx+18, starty+1);
-write('*');
-gotoxy(startx+18, starty+2);
-write('*');
-gotoxy(startx+18, starty+3);
-write('*');
-gotoxy(startx+17, starty+4);
-write('***');
-//O
-gotoxy(startx+22, starty);
-write('***');
-gotoxy(startx+21, starty+1);
-write('**');
-gotoxy(startx+24, starty+1);
-write('**');
-gotoxy(startx+21, starty+2);
-write('*');
-gotoxy(startx+25, starty+2);
-write('*');
-gotoxy(startx+21, starty+3);
-write('**');
-gotoxy(startx+24, starty+3);
-write('**');
-gotoxy(startx+22, starty+4);
-write('***');
-//N
-gotoxy(startx+27, starty);
-write('**');
-gotoxy(startx+31, starty);
-write('*');
-gotoxy(startx+27, starty+1);
-write('***');
-gotoxy(startx+31, starty+1);
-write('*');
-gotoxy(startx+27, starty+2);
-write('*');
-gotoxy(startx+29, starty+2);
-write('*');
-gotoxy(startx+31, starty+2);
-write('*');
-gotoxy(startx+27, starty+3);
-write('*');
-gotoxy(startx+29, starty+3);
-write('***');
-gotoxy(startx+27, starty+4);
-write('*');
-gotoxy(startx+30, starty+4);
-write('**');
-//S
-gotoxy(startx+33, starty);
-write('*****');
-gotoxy(startx+33, starty+1);
-write('*');
-gotoxy(startx+33, starty+2);
-write('*****');
-gotoxy(startx+37, starty+3);
-write('*');
-gotoxy(startx+33, starty+4);
-write('*****');
+write('** ** *      *    *  ** ** * ***     *');
+gotoxy(startx, starty+4);
+write(' ***  *      *   ***  ***  *  ** *****');
 end;		//OPTIONS---------------------------------------------------
 
 
 procedure exit(startx:integer; starty:integer);
 begin		//EXIT------------------------------------------------------
-//E
 gotoxy(startx, starty);
-write('****');
+write('**** *   * *** *****');
 gotoxy(startx, starty+1);
-write('*');
+write('*    ** **  *    *');
 gotoxy(startx, starty+2);
-write('****');
+write('****  ***   *    *');
 gotoxy(startx, starty+3);
-write('*');
+write('*    ** **  *    *');
 gotoxy(startx, starty+4);
-write('****');
-//X
-gotoxy(startx+5, starty);
-write('*');
-gotoxy(startx+9, starty);
-write('*');
-gotoxy(startx+5, starty+1);
-write('**');
-gotoxy(startx+8, starty+1);
-write('**');
-gotoxy(startx+6, starty+2);
-write('***');
-gotoxy(startx+5, starty+3);
-write('**');
-gotoxy(startx+8, starty+3);
-write('**');
-gotoxy(startx+5, starty+4);
-write('*');
-gotoxy(startx+9, starty+4);
-write('*');
-//I
-gotoxy(startx+11, starty);
-write('***');
-gotoxy(startx+12, starty+1);
-write('*');
-gotoxy(startx+12, starty+2);
-write('*');
-gotoxy(startx+12, starty+3);
-write('*');
-gotoxy(startx+11, starty+4);
-write('***');
-//T
-gotoxy(startx+15, starty);
-write('*****');
-gotoxy(startx+17, starty+1);
-write('*');
-gotoxy(startx+17, starty+2);
-write('*');
-gotoxy(startx+17, starty+3);
-write('*');
-gotoxy(startx+17, starty+4);
-write('*');
+write('**** *   * ***   *');
 end;		//EXIT------------------------------------------------------
 
 
 procedure minigame(x:integer; y:integer);
 begin       //MINIGAME--------------------------------------------------
-//G
 gotoxy(x, y);
-write('*****');
+write('*****   *   *   * ****');
 gotoxy(x, y+1);
-write('** **');
+write('** **  ***  ** ** *');
 gotoxy(x, y+2);
-write('*');
+write('*      * *  * * * ***');
 gotoxy(x, y+3);
-write('*  **');
+write('*  ** ***** *   * ***');
 gotoxy(x, y+4);
-write('**  *');
+write('**  * *   * *   * *');
 gotoxy(x, y+5);
-write('*****');
-//A
-gotoxy(x+6, y);
-write('  *  ');
-gotoxy(x+6, y+1);
-write(' *** ');
-gotoxy(x+6, y+2);
-write(' * * ');
-gotoxy(x+6, y+3);
-write('*****');
-gotoxy(x+6, y+4);
-write('*   *');
-gotoxy(x+6, y+5);
-write('*   *');
-//M
-gotoxy(x+12, y);
-write('*   *');
-gotoxy(x+12, y+1);
-write('** **');
-gotoxy(x+12, y+2);
-write('* * *');
-gotoxy(x+12, y+3);
-write('*   *');
-gotoxy(x+12, y+4);
-write('*   *');
-gotoxy(x+12, y+5);
-write('*   *');
-//E
-gotoxy(x+18, y);
-write('****');
-gotoxy(x+18, y+1);
-write('*');
-gotoxy(x+18, y+2);
-write('***');
-gotoxy(x+18, y+3);
-write('***');
-gotoxy(x+18, y+4);
-write('*');
-gotoxy(x+18, y+5);
-write('****');
+write('***** *   * *   * ****');
 end;        //MINIGAME--------------------------------------------------
 
 
@@ -1391,8 +935,8 @@ if (x<2) or (x>szel-1) or (y<2) or(y>mag-1)
 				 1:score:=score+1;
 				 2:score:=score+2;
 				 3:score:=score+3;
-				 4:score:=score+4;
-				 5:score:=score+5;
+				 4:score:=score+5;
+				 5:score:=score+10;
 				 end;
 				 gotoxy(72, 12);
 				 write(score);
