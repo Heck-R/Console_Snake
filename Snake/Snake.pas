@@ -1385,7 +1385,10 @@ if (score>leader[10].pont)
 		 congratulation(6, 8);
 		 kori2(6, 15);
 		 
-		 gotoxy(25, 16);
+		 gotoxy(25, 15);
+		 write('           Score: ', score);
+		 
+		 gotoxy(25, 17);
 		 write('You are the NUMBER ONE player!!!');
 		 
 		 gotoxy(25, 24);
@@ -1404,7 +1407,10 @@ if (score>leader[10].pont)
 		 begin
 		 congratulation(6, 8);
 		 
-		 gotoxy(26, 17);
+		 gotoxy(25, 15);
+		 write('           Score: ', score);
+		 
+		 gotoxy(25, 17);
 		 write('Your score is the ', rank, '. highest!');
 		 
 		 gotoxy(25, 24);
