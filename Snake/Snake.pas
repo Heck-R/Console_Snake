@@ -6,9 +6,7 @@ const max=100;
 
 var c: char;
 var x, y:integer;
-var i, j, k:integer;
-var xt: array[2..max] of integer;
-var yt: array[2..max] of integer;
+var i:integer;
 var memx: array[1..max] of integer;
 var memy: array[1..max] of integer;
 var maxx, maxy:integer;
@@ -689,59 +687,93 @@ writeln;
 end;
 
 
+procedure palya;
+var i:integer;
+begin
+for i:=1 to 38 do
+	begin
+	write('%');
+	end;
 
-BEGIN	
+gotoxy(1, 1);
+
+for i:=1 to 24 do
+	begin
+	writeln('%');
+	end;
+write('%');
+
+for i:=1 to 38 do
+	begin
+	write('%');
+	end;
+
+for i:=1 to 24 do
+	begin
+	gotoxy(39, i);
+	writeln('%');
+	end;
+
+end;
+
+
+BEGIN
+palya;
 x:=10;
 y:=10;
 memx[1]:=x;
 memy[1]:=y;
 gotoxy(x, y);
 write('*');
-j:=1;
-for i:=2 to max do
-	begin
-	xt[i]:=10;
-	yt[i]:=10;
-	end;
+
 c:=readkey;
 
-maxx:=2;
-maxy:=2;
+maxx:=5;
+maxy:=5;
 randomize;
-xcsill:=random(79)+1;
-ycsill:=random(24)+1;
+xcsill:=random(36)+2;
+ycsill:=random(23)+2;
 gotoxy(xcsill, ycsill);
-write('*');
+write('@');
 
 gotoxy(x, y);
 
-repeat
+REPEAT
+if keypressed 
+	then begin
+		 c:=readkey 
+		 end;
 
-//xxxxxxxxx
-	
-	if keypressed 
-		then begin
-			 c:=readkey 
-			 end;
 
-			 case ord(c) of
-			 72: y:=y-1;	//fel
-			 80: y:=y+1;	//le
-			 77: x:=x+1;	//jobb
-			 75: x:=x-1;	//bal
-			 end;
+case ord(c) of
+72: y:=y-1;	//fel
+80: y:=y+1;	//le
+77: x:=x+1;	//jobb
+75: x:=x-1;	//bal
+end;
+
 	
-for j:=max downto 2 do
+
+for i:=max downto 2 do
 begin
-memx[j]:=memx[j-1];
-memy[j]:=memy[j-1];
+memx[i]:=memx[i-1];
+memy[i]:=memy[i-1];
 end;
 memx[1]:=x;
 memy[1]:=y;
 
 
-	
-	if (x<1) or (x>80) or (y<1) or(y>25)
+for i:=2 to maxx do
+	begin
+	if (x=memx[i]) and (y=memy[i])
+		then begin
+			 x:=1;
+			 y:=25;
+			 end;
+	end;
+
+
+if (x<2) or (x>38) or (y<2) or(y>24)
 	then begin
 		 clrscr;
 		 over;
@@ -750,53 +782,39 @@ memy[1]:=y;
 	else begin;
 		 
 		 if (x=xcsill) and (y=ycsill)
-	then begin
-		maxx:=maxx+1;
-		maxy:=maxy+1;
-		
-		xcsill:=random(79)+1;
-		ycsill:=random(24)+1;
-		gotoxy(xcsill, ycsill);
-		write('*');
-		
-		gotoxy(x, y);
-		xt[maxx]:=x;
-		yt[maxy]:=y;
-		 end
-	else begin 
-		 for k:=2 to max do
-			begin
-			if (xt[k]=memx[maxx]) and (yt[k]=memy[maxy])
-				then begin
-					 gotoxy(xt[k], yt[k]);
-					 write(' ');
-					 xt[k]:=x;
-					 yt[k]:=y;
-					 
-					 end;
+			then begin
+				 maxx:=maxx+1;
+				 maxy:=maxy+1;
+				 
+				 xcsill:=random(36)+2;
+				 ycsill:=random(23)+2;
+				 gotoxy(xcsill, ycsill);
+				 write('@');
+				 
+				 gotoxy(x, y);
+				 end
+			else begin 
+				 gotoxy(memx[maxx], memy[maxy]);
+				 write(' ');
+				 end;
 		 end;
-			end;
-		 
 
-		 
-		 end;
-	
-	if x < 1 then x:=1;
-	if x > 80 then x:=80;
-	if y < 1 then y:=1;
-	if y > 25 then y:=25;
-	
-	
-	gotoxy(x, y);
-	write('*');
-	
-	delay(100);
-	
-	if keypressed 
+gotoxy(x, y);
+write('*');
+
+if (ord(c)=72) or (ord(c)=80)
+then delay(100);
+if (ord(c)=77) or (ord(c)=75)
+then delay(85);
+
+if not (c in ['v', 'V'])
+then begin
+	 if keypressed 
 		then begin
 			 c:=readkey 
 			 end;
-	
-	until (c in['v', 'V']); 
-	
+	 end;
+UNTIL (c in['v', 'V']); 
+
+gotoxy(1, 25);
 END.
