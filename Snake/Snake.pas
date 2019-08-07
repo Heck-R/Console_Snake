@@ -250,6 +250,23 @@ write('***** *   * *   * ****');
 end;        //MINIGAME--------------------------------------------------
 
 
+procedure pause(x:integer; y:integer);
+begin       //PAUSE-----------------------------------------------------
+gotoxy(x, y);
+write('*** *** * * *** ***');
+gotoxy(x, y+1);
+write('* * * * * * *   *  ');
+gotoxy(x, y+2);
+write('*** *** * * *** ***');
+gotoxy(x, y+3);
+write('*   * * * *   * *  ');
+gotoxy(x, y+4);
+write('*   * * *** *** ***');
+end;        //PAUSE-----------------------------------------------------
+
+
+
+
 
 BEGIN
 begin		//rögzítés--------------------------------------------------
@@ -367,40 +384,40 @@ gotoxy(3, 7);
 write('Start poz');
 
 gotoxy(3, 9);
-write('Snake length   < 5 >');
-gotoxy(20, 9);
+write('Snake length  < 5 >');
+gotoxy(19, 9);
 write(ohosz-1, ' >');
 
 gotoxy(3, 11);
-write('Speed   < normal >');
+write('Speed  < normal >');
 begin
 if gyor=1
 	then begin
-		 gotoxy(13, 11);
+		 gotoxy(12, 11);
 		 write('very slow >');
 		 end;
  
 if gyor=2
 	then begin
-		 gotoxy(13, 11);
+		 gotoxy(12, 11);
 		 write('slow >      ');
 		 end;
  
 if gyor=3
 	then begin
-		 gotoxy(13, 11);
+		 gotoxy(12, 11);
 		 write('normal >      ');
 		 end;
  
 if gyor=4
 	then begin
-		 gotoxy(13, 11);
+		 gotoxy(12, 11);
 		 write('fast >      ');
 		 end;
  
 if gyor=5
 	then begin
-		 gotoxy(13, 11);
+		 gotoxy(12, 11);
 		 write('very fast >');
 		 end;
 end;
@@ -512,51 +529,47 @@ if (ord(omozg)=13) and (otart=1) (*field size*)
 		 
 		 gotoxy(1, 5);
 		 write('> Field size:  25x38     ');
-		 begin
 		 gotoxy(16, 5);
 		 write(mag, 'x', szel, '     ');
-		 end;
+		 
 		 gotoxy(3, 7);
 		 write('Start poz');
-		 begin
 		 
-		 end;
 		 gotoxy(3, 9);
-		 write('Snake length   < 5 >');
-		 begin
-		 gotoxy(20, 9);
+		 write('Snake length  < 5 >');
+		 gotoxy(19, 9);
 		 write(ohosz-1, ' >     ');
-		 end;
+		 
 		 gotoxy(3, 11);
-		 write('Speed   < normal >');
+		 write('Speed  < normal >');
 		 begin
 		 if gyor=1
 		 	then begin
-		 		gotoxy(13, 11);
+		 		gotoxy(12, 11);
 		 		write('very slow >');
 		 		end;
 		 
 		 if gyor=2
 		 	then begin
-		 		gotoxy(13, 11);
+		 		gotoxy(12, 11);
 		 		write('slow >      ');
 		 		end;
 		 
 		 if gyor=3
 		 	then begin
-		 		gotoxy(13, 11);
+		 		gotoxy(12, 11);
 		 		write('normal >      ');
 		 		end;
 		 
 		 if gyor=4
 		 	then begin
-		 		gotoxy(13, 11);
+		 		gotoxy(12, 11);
 		 		write('fast >      ');
 		 		end;
 		 
 		 if gyor=5
 		 	then begin
-		 		gotoxy(13, 11);
+		 		gotoxy(12, 11);
 		 		write('very fast >');
 		 		end;
 		 end;	
@@ -639,51 +652,47 @@ if (ord(omozg)=13) and (otart=2) (*start poz*)
 		 
 		 gotoxy(1, 5);
 		 write('  Field size:  25x38     ');
-		 begin
 		 gotoxy(16, 5);
 		 write(mag, 'x', szel, '     ');
-		 end;
+		 
 		 gotoxy(1, 7);
 		 write('> Start poz');
-		 begin
 		 
-		 end;
 		 gotoxy(3, 9);
-		 write('Snake length   < 5 >');
-		 begin
-		 gotoxy(20, 9);
+		 write('Snake length  < 5 >');
+		 gotoxy(19, 9);
 		 write(ohosz-1, ' >     ');
-		 end;
+		 
 		 gotoxy(3, 11);
-		 write('Speed   < normal >');
+		 write('Speed  < normal >');
 		 begin
 		 if gyor=1
 		 	then begin
-		 		gotoxy(13, 11);
+		 		gotoxy(12, 11);
 		 		write('very slow >');
 		 		end;
 		 
 		 if gyor=2
 		 	then begin
-		 		gotoxy(13, 11);
+		 		gotoxy(12, 11);
 		 		write('slow >      ');
 		 		end;
 		 
 		 if gyor=3
 		 	then begin
-		 		gotoxy(13, 11);
+		 		gotoxy(12, 11);
 		 		write('normal >      ');
 		 		end;
 		 
 		 if gyor=4
 		 	then begin
-		 		gotoxy(13, 11);
+		 		gotoxy(12, 11);
 		 		write('fast >      ');
 		 		end;
 		 
 		 if gyor=5
 		 	then begin
-		 		gotoxy(13, 11);
+		 		gotoxy(12, 11);
 		 		write('very fast >');
 		 		end;
 		 end;	
@@ -704,7 +713,7 @@ if ((ord(omozg)=77) or (ord(omozg)=75)) and (otart=3) (*length*)
 		 if ohosz>(((szel-1)*(mag-1))-2) then ohosz:=2;
 		 
 				 begin
-				 gotoxy(20, 9);
+				 gotoxy(19, 9);
 				 write(ohosz-1, ' >    ');
 				 end;
 		 end;
@@ -721,59 +730,52 @@ if ((ord(omozg)=77) or (ord(omozg)=75)) and (otart=4) (*speed*)
 		 
 		 if gyor=1
 			then begin
-				 gotoxy(13, 11);
+				 gotoxy(12, 11);
 				 write('very slow >');
 				 end;
 		 
 		 if gyor=2
 			then begin
-				 gotoxy(13, 11);
+				 gotoxy(12, 11);
 				 write('slow >      ');
 				 end;
 		 
 		 if gyor=3
 			then begin
-				 gotoxy(13, 11);
+				 gotoxy(12, 11);
 				 write('normal >      ');
 				 end;
 		 
 		 if gyor=4
 			then begin
-				 gotoxy(13, 11);
+				 gotoxy(12, 11);
 				 write('fast >      ');
 				 end;
 		 
 		 if gyor=5
 			then begin
-				 gotoxy(13, 11);
+				 gotoxy(12, 11);
 				 write('very fast >');
 				 end;
 		 end;
 
 if (ord(omozg)=13) and (otart=5) (*reset*)
 	then begin
-		 gotoxy(3, 5);
-		 write('Field size:  25x38');
-		 begin
+		 gotoxy(16, 5);
+		 write('25x38');
 		 mag:=25;
 		 szel:=38;
-		 end;
-		 gotoxy(3, 7);
-		 write('Start poz');
-		 gotoxy(3, 9);
-		 write('Snake length   < 5 >   ');
-		 begin
+		 
+		 x:=((szel div 2)+1);
+		 y:=((mag div 2)+1);
+		 
+		 gotoxy(17, 9);
+		 write('< 5 >   ');
 		 ohosz:=6;
-		 end;
-		 gotoxy(3, 11);
-		 write('Speed   < normal >     ');
-		 begin
+		 
+		 gotoxy(10, 11);
+		 write('< normal >     ');
 		 gyor:=3;
-		 end;
-		 gotoxy(3, 21);
-		 write('reset');
-		 gotoxy(3, 23);
-		 write('MAIN MENU');
 		 end;
 
 if (ord(omozg)=13) and (otart=6) (*main menu*)
@@ -832,6 +834,9 @@ write('%%%%%%%%%%%%%%%%%%%%%%%%');
 minigame(58, 2);
 
 gotoxy(57, 17);
+write('%%%%%%%%%%%%%%%%%%%%%%%%');
+
+gotoxy(57, 28);
 write('%%%%%%%%%%%%%%%%%%%%%%%%');
 
 gotoxy(65, 12);
@@ -912,9 +917,38 @@ if keypressed
 				 end;
 		 if (nul='p')
 			then begin
+				 pause(59, 30);
 				 repeat
+				 
+				 repeat
+				 i:=0;
+				 
+				 if not (keypressed)
+				 then begin
+					  repeat
+					  delay(10);
+					  gotoxy(x, y);
+					  write(' ');
+					  i:=i+1;
+					  until (keypressed) or (i=20);
+					  i:=0;
+					  
+					  repeat
+					  delay(10);
+					  gotoxy(x, y);
+					  write('*');
+					  i:=i+1;
+					  until (keypressed) or (i=20);
+					  end;
+				 
+				 until keypressed;
 				 nul:=readkey;
+				 
 				 until (ord(nul)=0) or (nul='p');
+				 
+				 window(59, 29, 79, 34);
+				 clrscr;
+				 window(1, 1, 80, 35);
 				 
 				 if (ord(nul)=0) then c:=readkey
 				 end;
