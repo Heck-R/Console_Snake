@@ -4,12 +4,15 @@ uses crt;
 
 const max=10000;
 const szemely=10;
+const sckod='cheat';
 
 type lead = record
 			nev:string;
 			pont:integer;
 			end;
 
+var sccommand, setnev:string;
+var setscore, setszam:integer;
 var neve:string;
 var tart:file of lead;
 var harveg, opt, jump:boolean;
@@ -344,6 +347,28 @@ write('*****   *******   *****');
 end;        //KERET-----------------------------------------------------
 
 
+procedure keret2(startx:integer; starty:integer);
+var i:integer;
+begin		//KERET2----------------------------------------------------
+gotoxy(startx, starty);
+write('***********************');
+gotoxy(startx, starty+1);
+write('***********************');
+
+for i:=1 to 9 do
+begin
+gotoxy(startx, starty+1+i);
+write('**                   **');
+end;
+
+gotoxy(startx, starty+11);
+write('***********************');
+gotoxy(startx, starty+12);
+write('***********************');
+end;		//KERET2----------------------------------------------------
+
+
+
 procedure pause(x:integer; y:integer);
 begin       //PAUSE-----------------------------------------------------
 gotoxy(x, y);
@@ -428,6 +453,8 @@ write('*******    *******                                  *******    *******');
 gotoxy(startx, starty+3);
 write('*******    *******                                  *******    *******');
 end;        //KORI2-----------------------------------------------------
+
+
 
 
 
@@ -569,12 +596,13 @@ end;		//MAIN MENU-------------------------------------------------
 
 if (fo=3) then
 begin       //SCORES----------------------------------------------------
-repeat
+
 miniscores(5, 6);
 
 keret(45, 3);
 
-
+repeat
+keret(45, 3);
 begin
 nevjegy(51, 7, leader[1].nev, leader[1].pont, 1);
 
@@ -591,7 +619,180 @@ nevjegy(66, 23, leader[9].nev, leader[9].pont, 9);
 nevjegy(66, 30, leader[10].nev, leader[10].pont, 10);
 end;
 
+i:=0;
+repeat
 sckey:=readkey;
+i:=i+1;
+until (sckey<>sckod[i]) or (i=length(sckod));
+
+if sckey<>sckod[length(sckod)] then i:=i-1;
+
+if i=length(sckod)
+	then begin
+		 keret2(5, 12);
+		 gotoxy(8, 15);
+		 cursoron;
+		 
+		 readln(sccommand);
+		 
+		 if sccommand='add'
+			then begin
+				 (*adatok*)
+				 begin
+				 gotoxy(8, 18);
+				 readln(setnev);
+				 
+				 gotoxy(8, 21);
+				 readln(setscore);
+				 end;
+				 (*adatok*)
+
+				 (*helyezés ker*)
+				 begin
+		 		 rank:=11;
+		 		 
+		 		 for i:=10 downto 1 do
+				 	begin
+				 	if (setscore>leader[i].pont) then rank:=i;
+				 	end;
+		 
+		 		 for i:=10 downto rank+1 do
+				 	begin
+				 	leader[i].nev:= leader[i-1].nev;
+				 	leader[i].pont:= leader[i-1].pont;
+				 	end;
+		 		 
+		 		 if rank<>11 then
+		 		 begin
+		 		 leader[rank].nev:=setnev;
+				 leader[rank].pont:=setscore;
+				 end;
+		 		 end;
+		 		 (*helyezés ker*)
+				 
+				 (*mentés*)
+				 begin
+				 assign(tart, 'scores.dat');
+				 rewrite(tart);
+				 for i:=1 to szemely do
+					 begin
+					 write(tart, leader[i]);
+					 end;
+				 close(tart);
+				 end;
+				 (*mentés*)
+				 
+				 clrscr;
+				 
+				 miniscores(5, 6);
+				 end;
+		 
+		 if sccommand='delete'
+			then begin
+				 (*adatok*)
+				 begin
+				 gotoxy(8, 19);
+				 readln(setszam);
+				 end;
+				 (*adatok*)
+				 
+				 (*helyezés átrendezés*)
+				 begin
+		 		 for i:=setszam to 9 do
+				 	begin
+				 	leader[i].nev:= leader[i+1].nev;
+				 	leader[i].pont:= leader[i+1].pont;
+				 	end;
+		 		 
+		 		 leader[10].nev:='Master';
+				 leader[10].pont:=(leader[10].pont)-(leader[10].pont mod 30);
+		 		 end;
+		 		 (*helyezés átrendezés*)
+				 
+				 (*mentés*)
+				 begin
+				 assign(tart, 'scores.dat');
+				 rewrite(tart);
+				 for i:=1 to szemely do
+					 begin
+					 write(tart, leader[i]);
+					 end;
+				 close(tart);
+				 end;
+				 (*mentés*)
+				 
+				 clrscr;
+				 
+				 miniscores(5, 6);
+				 end;
+		 
+		 if sccommand='rename'
+			then begin
+				 (*adatok*)
+				 begin
+				 gotoxy(8, 18);
+				 readln(setszam);
+				 
+				 gotoxy(8, 21);
+				 readln(setnev);
+				 end;
+				 (*adatok*)
+				 
+				 (*átírás*)
+				 begin
+		 		 leader[setszam].nev:=setnev;
+		 		 end;
+		 		 (*átírás*)
+				 
+				 (*mentés*)
+				 begin
+				 assign(tart, 'scores.dat');
+				 rewrite(tart);
+				 for i:=1 to szemely do
+					 begin
+					 write(tart, leader[i]);
+					 end;
+				 close(tart);
+				 end;
+				 (*mentés*)
+				 
+				 clrscr;
+				 
+				 miniscores(5, 6);
+				 end;
+		 
+		 if sccommand='reset'
+			then begin
+				 (*átírás*)
+				 begin
+				 for i:=1 to szemely do
+						begin
+						leader[i].nev:='Master';
+						leader[i].pont:=330-(30*(i));
+						end;
+				 end;
+				 (*átírás*)
+				 
+				 (*mentés*)
+				 begin
+				 assign(tart, 'scores.dat');
+				 rewrite(tart);
+				 for i:=1 to szemely do
+					 begin
+					 write(tart, leader[i]);
+					 end;
+				 close(tart);
+				 end;
+				 (*mentés*)
+				 
+				 clrscr;
+				 
+				 miniscores(5, 6);
+				 end;
+		 
+		 
+		 cursoroff;
+		 end;
 
 until (ord(sckey)=13);
 end;        //SCORES----------------------------------------------------
