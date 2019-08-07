@@ -5,7 +5,7 @@ uses crt;
 const max=10000;
 
 var harveg, opt:boolean;
-var c, p, b, omozg: char;
+var c, b, omozg, nul:char;
 var otart, oel, gyor:integer;
 var ohosz:integer;
 var mag, szel:integer;
@@ -996,14 +996,10 @@ cursoroff;
 gyor:=3;
 mag:=25;
 szel:=38;
-ohosz:=5;
-memx[1]:=1;
-memy[1]:=1;
-for i:=2 to max do
-	begin
-	memx[i]:=memx[i-1];
-	memy[i]:=memy[i-1];
-	end;
+ohosz:=6;
+memx[1]:=mag+1;
+memy[1]:=mag+1;
+
 end;		//rögzítés--------------------------------------------------
 repeat
 begin		//előkészítés-----------------------------------------------
@@ -1092,42 +1088,50 @@ write('--------');
 
 gotoxy(1, 5);
 write('> Field size');
-gotoxy(3, 7);
-write('Snake length   < 5 >');
 begin
-gotoxy(20, 7);
-write(ohosz, ' >');
+
+end;
+gotoxy(3, 7);
+write('Start poz');
+begin
+
 end;
 gotoxy(3, 9);
+write('Snake length   < 5 >');
+begin
+gotoxy(20, 9);
+write(ohosz, ' >');
+end;
+gotoxy(3, 11);
 write('Speed   < normal >');
 begin
 if gyor=1
 	then begin
-		 gotoxy(13, 9);
+		 gotoxy(13, 11);
 		 write('very slow >');
 		 end;
  
 if gyor=2
 	then begin
-		 gotoxy(13, 9);
+		 gotoxy(13, 11);
 		 write('slow >      ');
 		 end;
  
 if gyor=3
 	then begin
-		 gotoxy(13, 9);
+		 gotoxy(13, 11);
 		 write('normal >      ');
 		 end;
  
 if gyor=4
 	then begin
-		 gotoxy(13, 9);
+		 gotoxy(13, 11);
 		 write('fast >      ');
 		 end;
  
 if gyor=5
 	then begin
-		 gotoxy(13, 9);
+		 gotoxy(13, 11);
 		 write('very fast >');
 		 end;
 end;
@@ -1138,7 +1142,6 @@ write('MAIN MENU');
 
 
 repeat
-
 if keypressed 
 	then begin
 		 omozg:=readkey;
@@ -1149,7 +1152,7 @@ case ord(omozg) of
 80: otart:=otart+1;	(*le*)
 end;
 
-if (otart>5) then otart:=5;
+if (otart>6) then otart:=6;
 if (otart<1) then otart:=1;
 
 
@@ -1161,23 +1164,25 @@ if otart<>oel
 		 writeln(' ');
 		 gotoxy(1, 9);
 		 write(' ');
+		 gotoxy(1, 11);
+		 write(' ');
 		 gotoxy(1, 21);
 		 write(' ');
 		 gotoxy(1, 23);
 		 write(' ');
 
-		 if (otart=1) or (otart=2) or (otart=3)
+		 if (otart=1) or (otart=2) or (otart=3) or (otart=4)
 			then begin
 				 gotoxy(1, 3+(otart*2));
 				 write('>');
 				 end;
 
-		 if otart=4 
+		 if otart=5
 			then begin
 				 gotoxy(1, 21);
 				 write('>');
 				 end;
-		 if otart=5
+		 if otart=6
 			then begin
 				 gotoxy(1, 23);
 				 write('>');
@@ -1185,40 +1190,32 @@ if otart<>oel
 		 		 
 		 end;
 
+if (ord(omozg)=13) and (otart=1)
+	then begin
+		 ////////////////////////////////////
+		 end;
 
+if (ord(omozg)=13) and (otart=2)
+	then begin
+		 ///////////////////////////////////
+		 end;
 
-
-
-
-
-
-
-
-
-
-
-
-if ((ord(omozg)=77) or (ord(omozg)=75)) and (otart=2)
+if ((ord(omozg)=77) or (ord(omozg)=75)) and (otart=3)
 	then begin
 		 case ord(omozg) of
 		 77: ohosz:=ohosz+1;	(*jobb*)
 		 75: ohosz:=ohosz-1;	(*bal*)
 		 end;
 		 if ohosz<1 then ohosz:=(((szel-2)*(mag-2))-1);
-		 if ohosz>(((szel-2)*(mag-2))-1) then ohosz:=1;
+		 if ohosz>((szel-2)*(mag-2)) then ohosz:=1;
 		 
 				 begin
-				 gotoxy(20, 7);
-				 write(ohosz, ' >  ');
+				 gotoxy(20, 9);
+				 write(ohosz-1, ' >  ');
 				 end;
 		 end;
 
-
-
-
-
-
-if ((ord(omozg)=77) or (ord(omozg)=75)) and (otart=3)
+if ((ord(omozg)=77) or (ord(omozg)=75)) and (otart=4)
 	then begin
 		 case ord(omozg) of
 		 77: gyor:=gyor+1;	(*jobb*)
@@ -1230,56 +1227,48 @@ if ((ord(omozg)=77) or (ord(omozg)=75)) and (otart=3)
 		 
 		 if gyor=1
 			then begin
-				 gotoxy(13, 9);
+				 gotoxy(13, 11);
 				 write('very slow >');
 				 end;
 		 
 		 if gyor=2
 			then begin
-				 gotoxy(13, 9);
+				 gotoxy(13, 11);
 				 write('slow >      ');
 				 end;
 		 
 		 if gyor=3
 			then begin
-				 gotoxy(13, 9);
+				 gotoxy(13, 11);
 				 write('normal >      ');
 				 end;
 		 
 		 if gyor=4
 			then begin
-				 gotoxy(13, 9);
+				 gotoxy(13, 11);
 				 write('fast >      ');
 				 end;
 		 
 		 if gyor=5
 			then begin
-				 gotoxy(13, 9);
+				 gotoxy(13, 11);
 				 write('very fast >');
 				 end;
 		 end;
 
-
-
-
-
-
-
-
-
 if (ord(omozg)=13) and (otart=5)
+	then begin
+		 ///////////////////////////////////////
+		 end;
+
+if (ord(omozg)=13) and (otart=6)
 	then begin
 		 opt:=true;
 		 fo:=3;
 		 end;
 
-
 oel:=otart;
 omozg:='a';
-
-
-
-
 
 if keypressed 
 	then begin
@@ -1287,16 +1276,13 @@ if keypressed
 		 end;
 
 until opt;
-opt:=false
+opt:=false;
 end;		//beállítások-----------------------------------------------
 
 
 
 if (fo=1) then
 begin		//alap------------------------------------------------------
-
-
-
 palya(mag, szel);
 x:=(szel div 2);
 y:=(mag div 2);
@@ -1308,7 +1294,15 @@ write('*');
 maxx:=ohosz;
 maxy:=ohosz;
 
+for i:=2 to ohosz do
+	begin
+	memx[i]:=x;
+	memy[i]:=y;
+	end;
+
+repeat
 c:=readkey;
+until(ord(c)=80) or (ord(c)=77) or (ord(c)=75) or (ord(c)=72);
 
 repeat
 xcsill:=random(szel-2)+2;
@@ -1329,15 +1323,16 @@ begin		//mozgás----------------------------------------------------
 REPEAT
 if keypressed 
 	then begin
-		 c:=readkey;
-		 if (c<>'p') then p:=c;
-		 end;
-
-
-if c='p' 
-	then begin
-		 readkey;
-		 c:=p
+		 nul:=readkey;
+		 
+		 if (ord(nul)=0) 
+			then begin
+				 c:=readkey;
+				 end;
+		 if (nul='p')
+			then begin
+				 readkey;
+				 end;
 		 end;
 
 
@@ -1363,7 +1358,7 @@ for i:=2 to maxx do
 	if (x=memx[i]) and (y=memy[i])
 		then begin
 			 x:=1;
-			 y:=25;
+			 y:=1;
 			 end;
 	end;
 
@@ -1374,8 +1369,10 @@ if (x<2) or (x>szel-1) or (y<2) or(y>mag-1)
 		 over;
 		 c:='v';
 		 for i:=1 to max do
-	memx[i]:=(szel+1);/////////////////////////////////////////////////////
-	memy[i]:=1;
+		 begin
+		 memx[i]:=szel+1;
+		 memy[i]:=mag+1;
+		 end;
 		 end
 	else begin;
 		 if (x=xcsill) and (y=ycsill)
@@ -1383,9 +1380,9 @@ if (x<2) or (x>szel-1) or (y<2) or(y>mag-1)
 				 maxx:=maxx+1;
 				 maxy:=maxy+1;
 				 repeat
+				 h:=1;
 				 for i:=1 to maxx do
 					begin
-					h:=1;
 					if (xcsill=memx[i]) and (ycsill=memy[i])
 						then begin
 							 h:=0;
@@ -1404,6 +1401,7 @@ if (x<2) or (x>szel-1) or (y<2) or(y>mag-1)
 				 end;
 		 end;
 
+
 if not (x<2) and not (y<2) and not (x>szel-1) and not (y>mag-1)
 	then begin
 		 gotoxy(x, y);
@@ -1421,7 +1419,15 @@ if not (c in ['v', 'V'])
 then begin
 	 if keypressed 
 		then begin
-			 c:=readkey 
+			 nul:=readkey;
+			 if (ord(nul)=0)
+				then begin
+					 c:=readkey; 
+					 end;
+			 if (nul='p')
+				then begin
+					 readkey;
+					 end;
 			 end;
 	 end;
 UNTIL (c in['v', 'V']); 
